@@ -1,0 +1,3 @@
+arxis_contable_homepage:
+    path:     /
+    defaults: { _controller: ArxisContableBundle:Default:index }

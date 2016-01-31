@@ -1,0 +1,7 @@
+doctrine:
+    dbal:
+      types:
+         CuentaContableType: Arxis\ContableBundle\DBAL\Types\CuentaContableType
+         NaturalezaCuentaContableType: Arxis\ContableBundle\DBAL\Types\NaturalezaCuentaContableType
+         GeneroCuentaContableType: Arxis\ContableBundle\DBAL\Types\GeneroCuentaContableType
+        

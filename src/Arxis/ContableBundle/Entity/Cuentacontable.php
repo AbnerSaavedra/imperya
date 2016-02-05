@@ -45,7 +45,7 @@ class Cuentacontable
     private $nombre;
 
     /**
-     * @var string
+     * @var CuentaContableType
      *
      * @ORM\Column(name="Tipo", type="CuentaContableType", nullable=false, options={"default":"Activo"})
      * @DoctrineAssert\Enum(entity="Arxis\ContableBundle\DBAL\Types\CuentaContableType")     
@@ -74,7 +74,7 @@ class Cuentacontable
     private $montoultimatransaccion = 0.00;
 
     /**
-     * @var string
+     * @var GeneroCuentaContableType
      *
      * @ORM\Column(name="Genero", type="GeneroCuentaContableType", nullable=false, options={"default":"Grupo"})
      * @DoctrineAssert\Enum(entity="Arxis\ContableBundle\DBAL\Types\GeneroCuentaContableType")
@@ -89,7 +89,7 @@ class Cuentacontable
     private $bloqueada = false;
 
     /**
-     * @var string
+     * @var NaturalezaCuentaContableType
      *
      * @ORM\Column(name="Naturaleza", type="NaturalezaCuentaContableType", nullable=false, options={"default":"Deudora"})
      * @DoctrineAssert\Enum(entity="Arxis\ContableBundle\DBAL\Types\NaturalezaCuentaContableType")
@@ -97,14 +97,14 @@ class Cuentacontable
     private $naturaleza = 'Deudora';
 
     /**
-     * @var string
+     * @var boolean
      *
      * @ORM\Column(name="Tercero", type="boolean", nullable=false, options={"default":false})
      */
     private $tercero = false;
 
     /**
-     * @var string
+     * @var boolean
      *
      * @ORM\Column(name="CentroCosto", type="boolean", nullable=true, options={"default":false})
      */
@@ -120,18 +120,18 @@ class Cuentacontable
      * })
      */
     private $parent;
-    
+
     /**
      * 
      * @ORM\OneToMany(targetEntity="Cuentacontable", mappedBy="parent", cascade={"remove"})
      * 
      */
-    
+
     private $children;
     
     public function __construct() {
         $this->children = new \Doctrine\Common\Collections\ArrayCollection();
-    }
+}
 
 
     /**

@@ -3,6 +3,8 @@
 namespace Arxis\ContableBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Fresh\DoctrineEnumBundle\Validator\Constraints as DoctrineAssert;
+use Arxis\ContableBundle\DBAL\Types\EstadoEstablecimientoType;
 
 /**
  * Establecimiento
@@ -38,7 +40,7 @@ class Establecimiento
     /**
      * @var string
      *
-     * @ORM\Column(name="Numero", type="string", length=3, nullable=false)
+     * @ORM\Column(name="Numero", type="string", length=3, nullable=false, options={"default":"001"})
      */
     private $numero = '001';
 
@@ -80,28 +82,29 @@ class Establecimiento
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="FechaInicio", type="date", nullable=false)
+     * @ORM\Column(name="FechaInicio", type="date", nullable=false, options={"default":"2000-01-01"})
      */
     private $fechainicio = '2000-01-01';
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="FechaCierre", type="date", nullable=false)
+     * @ORM\Column(name="FechaCierre", type="date", nullable=false, options={"default":"2000-01-01"})
      */
     private $fechacierre = '2000-01-01';
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="FechaReinicio", type="date", nullable=false)
+     * @ORM\Column(name="FechaReinicio", type="date", nullable=false, options={"default":"2000-01-01"})
      */
     private $fechareinicio = '2000-01-01';
 
     /**
      * @var string
      *
-     * @ORM\Column(name="Estado", type="string", nullable=false)
+     * @ORM\Column(name="Estado", type="EstadoEstablecimientoType", nullable=false, options={"default":"Abierto"})
+     * @DoctrineAssert\Enum(entity="Arxis\ContableBundle\DBAL\Types\EstadoEstablecimientoType")
      */
     private $estado = 'Abierto';
 
@@ -120,18 +123,18 @@ class Establecimiento
     private $logo;
 
     /**
-     * @var string
+     * @var boolean
      *
-     * @ORM\Column(name="ComprobantesElectronicos", type="string", nullable=true)
+     * @ORM\Column(name="ComprobantesElectronicos", type="boolean", nullable=true, options={"default":false})
      */
-    private $comprobanteselectronicos = 'N';
+    private $comprobanteselectronicos = false;
 
     /**
      * @var \Establecimiento
      *
      * @ORM\ManyToOne(targetEntity="Establecimiento")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="EmpresaId", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="EmpresaId", referencedColumnName="id", nullable=false)
      * })
      */
     private $empresaid;

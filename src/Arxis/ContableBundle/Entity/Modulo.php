@@ -38,9 +38,9 @@ class Modulo
     /**
      * @var string
      *
-     * @ORM\Column(name="Activo", type="string", nullable=false)
+     * @ORM\Column(name="Activo", type="boolean", nullable=false, options={"default":true})
      */
-    private $activo = 'S';
+    private $activo = true;
 
 
 }

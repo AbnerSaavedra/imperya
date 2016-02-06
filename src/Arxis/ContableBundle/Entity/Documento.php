@@ -40,7 +40,7 @@ class Documento
      *
      * @ORM\ManyToOne(targetEntity="Modulo")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="ModuloId", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="ModuloId", referencedColumnName="id", nullable=false)
      * })
      */
     private $moduloid;

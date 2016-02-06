@@ -3,6 +3,8 @@
 namespace Arxis\ContableBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Fresh\DoctrineEnumBundle\Validator\Constraints as DoctrineAssert;
+use Arxis\ContableBundle\DBAL\Types\ClaseContribuyenteType;
 
 /**
  * Empresa
@@ -101,7 +103,8 @@ class Empresa
     /**
      * @var string
      *
-     * @ORM\Column(name="ClaseContribuyente", type="string", nullable=false, options={"default":"Otros"})
+     * @ORM\Column(name="ClaseContribuyente", type="ClaseContribuyenteType", nullable=false, options={"default":"Otros"})
+     * @DoctrineAssert\Enum(entity="Arxis\ContableBundle\DBAL\Types\ClaseContribuyenteType")
      */
     private $clasecontribuyente = 'Otros';
 
@@ -171,7 +174,7 @@ class Empresa
     /**
      * @var boolean
      *
-     * @ORM\Column(name="ContribuyenteEspecial", type="boolean", length=25, nullable=false, options={"default":false})
+     * @ORM\Column(name="ContribuyenteEspecial", type="boolean", nullable=false, options={"default":false})
      */
     private $contribuyenteespecial = false;
 
@@ -344,9 +347,9 @@ class Empresa
     private $cuentacontableresultadoid;
 
     /**
-     * @var \Sujeto
+     * @var \Contacto
      *
-     * @ORM\ManyToOne(targetEntity="Sujeto")
+     * @ORM\ManyToOne(targetEntity="Contacto")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="ContadorId", referencedColumnName="id", nullable=false)
      * })
@@ -354,9 +357,9 @@ class Empresa
     private $contadorid;
 
     /**
-     * @var \Sujeto
+     * @var \Contacto
      *
-     * @ORM\ManyToOne(targetEntity="Sujeto")
+     * @ORM\ManyToOne(targetEntity="Contacto")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="RepresentanteLegalId", referencedColumnName="id", nullable=false)
      * })
@@ -391,7 +394,7 @@ class Empresa
      *   @ORM\JoinColumn(name="TipoPersonaId", referencedColumnName="id")
      * })
      */
-    private $tipopersonaid;
+    private $tipopersonaid;  //tambien iria default 1 
 
 
 }

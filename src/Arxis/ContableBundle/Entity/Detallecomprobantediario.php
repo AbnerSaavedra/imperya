@@ -36,16 +36,16 @@ class Detallecomprobantediario
     private $numerodocumento;
 
     /**
-     * @var string
+     * @var float
      *
-     * @ORM\Column(name="Debe", type="decimal", precision=12, scale=2, nullable=false)
+     * @ORM\Column(name="Debe", type="decimal", precision=12, scale=2, nullable=false, options={"default":"0.00","unsigned":true})
      */
     private $debe = '0.00';
 
     /**
-     * @var string
+     * @var float
      *
-     * @ORM\Column(name="Haber", type="decimal", precision=12, scale=2, nullable=false)
+     * @ORM\Column(name="Haber", type="decimal", precision=12, scale=2, nullable=false, options={"default":"0.00","unsigned":true})
      */
     private $haber = '0.00';
 
@@ -54,7 +54,7 @@ class Detallecomprobantediario
      *
      * @ORM\ManyToOne(targetEntity="Comprobantediario")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="ComprobanteDiarioId", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="ComprobanteDiarioId", referencedColumnName="id", nullable=false)
      * })
      */
     private $comprobantediarioid;
@@ -64,7 +64,7 @@ class Detallecomprobantediario
      *
      * @ORM\ManyToOne(targetEntity="Cuentacontable")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="CuentaContableId", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="CuentaContableId", referencedColumnName="id", nullable=false)
      * })
      */
     private $cuentacontableid;

@@ -52,7 +52,7 @@ class Tipocomprobantediario
     /**
      * @var integer
      *
-     * @ORM\Column(name="Numero", type="integer", nullable=false)
+     * @ORM\Column(name="Numero", type="integer", nullable=false, options={"default":"1"})
      */
     private $numero = '1';
 

@@ -3,14 +3,16 @@
 namespace Arxis\ContableBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Fresh\DoctrineEnumBundle\Validator\Constraints as DoctrineAssert;
+use Arxis\ContableBundle\DBAL\Types\ClaseContribuyenteType;
 
 /**
- * Sujeto
+ * Contacto
  *
- * @ORM\Table(name="sujeto", indexes={@ORM\Index(name="Sujeto_TipoIdentificacion", columns={"TipoIdentificacionId"}), @ORM\Index(name="Sujeto_TipoPersona", columns={"TipoPersonaId"})})
+ * @ORM\Table(name="contacto", indexes={@ORM\Index(name="Contacto_TipoIdentificacion", columns={"TipoIdentificacionId"}), @ORM\Index(name="Contacto_TipoPersona", columns={"TipoPersonaId"})})
  * @ORM\Entity
  */
-class Sujeto
+class Contacto  ///Anteriormente se llamaba Contacto renombrada asi para compatibilidad
 {
     /**
      * @var integer
@@ -122,7 +124,8 @@ class Sujeto
     /**
      * @var string
      *
-     * @ORM\Column(name="ClaseContribuyente", type="string", nullable=false)
+     * @ORM\Column(name="ClaseContribuyente", type="ClaseContribuyenteType", nullable=false, options={"default":"Otros"})
+     * @DoctrineAssert\Enum(entity="Arxis\ContableBundle\DBAL\Types\ClaseContribuyenteType")
      */
     private $clasecontribuyente = 'Otros';
 
@@ -180,7 +183,7 @@ class Sujeto
      *
      * @ORM\ManyToOne(targetEntity="Tipoidentificacion")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="TipoIdentificacionId", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="TipoIdentificacionId", referencedColumnName="id", nullable=false)
      * })
      */
     private $tipoidentificacionid;
@@ -190,7 +193,7 @@ class Sujeto
      *
      * @ORM\ManyToOne(targetEntity="Tipopersona")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="TipoPersonaId", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="TipoPersonaId", referencedColumnName="id", nullable=false)
      * })
      */
     private $tipopersonaid;

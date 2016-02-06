@@ -24,7 +24,7 @@ class Estadodocumento
     /**
      * @var string
      *
-     * @ORM\Column(name="Codigo", type="string", length=2, nullable=false)
+     * @ORM\Column(name="Codigo", type="string", length=2, nullable=false, options={"default":"01"})
      */
     private $codigo = '01';
 

@@ -45,9 +45,9 @@ class Comprobantediario
     /**
      * @var integer
      *
-     * @ORM\Column(name="Numero", type="integer", nullable=false, options={"default":"0"})
+     * @ORM\Column(name="Numero", type="integer", nullable=false, options={"default":0,"unsigned":true})
      */
-    private $numero = '0';
+    private $numero = 0;
 
     /**
      * @var string
@@ -66,16 +66,16 @@ class Comprobantediario
     /**
      * @var string
      *
-     * @ORM\Column(name="Debe", type="decimal", precision=12, scale=2, nullable=false, options={"default":"0.00"})
+     * @ORM\Column(name="Debe", type="decimal", precision=12, scale=2, nullable=false, options={"default":"0.00","unsigned":true})
      */
-    private $debe = '0.00';
+    private $debe = 0.00;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="Haber", type="decimal", precision=12, scale=2, nullable=false, options={"default":"0.00"})
+     * @ORM\Column(name="Haber", type="decimal", precision=12, scale=2, nullable=false, options={"default":"0.00","unsigned":true})
      */
-    private $haber = '0.00';
+    private $haber = 0.00;
 
     /**
      * @var string
@@ -92,7 +92,7 @@ class Comprobantediario
      *   @ORM\JoinColumn(name="DocumentoId", referencedColumnName="id", nullable=false)
      * })
      */
-    private $documentoid;
+    private $documentoid; //deberia estar a 1 hay que ver
 
     /**
      * @var \Establecimiento

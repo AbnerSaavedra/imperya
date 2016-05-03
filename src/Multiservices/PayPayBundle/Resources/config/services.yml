@@ -1,0 +1,17 @@
+services:
+#    pay_pay.example:
+#        class: Multiservices\PayPayBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
+      paypay.form.type.formasPagos:
+        class: Multiservices\PayPayBundle\Form\Type\FormasPagosType
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: form.type, alias: formasPagos }
+      paypaybundle_datatable.ingresos:
+        class: Multiservices\PayPayBundle\Datatables\IngresosDatatable
+        tags:
+            - { name: sg.datatable.view }            
+      paypaybundle_datatable.egresos:
+        class: Multiservices\PayPayBundle\Datatables\EgresosDatatable
+        tags:
+            - { name: sg.datatable.view }  

@@ -1,0 +1,47 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "sourceMap": true
+    },
+    "exclude": [
+        "node_modules",
+        "typings/main.d.ts",
+        "typings/main"
+    ],
+    "filesGlob": [
+        "./src/**/*.ts",
+        "./test/**/*.ts",
+        "!./node_modules/**/*.ts",
+        "src/custom_typings.d.ts",
+        "typings/browser.d.ts"
+    ],
+    "compileOnSave": false,
+    "buildOnSave": false,
+    "atom": {
+        "rewriteTsconfig": false
+    },
+    "files": [
+        "typings/browser.d.ts",
+        "./srcfront/app.ts",
+        "./srcfront/app/another/another.ts",
+        "./srcfront/app/core/chat-sidebar/chat-message/chat-message.ts",
+        "./srcfront/app/core/chat-sidebar/chat-service.ts",
+        "./srcfront/app/core/chat-sidebar/chat-sidebar.ts",
+        "./srcfront/app/core/config.ts",
+        "./srcfront/app/core/core.ts",
+        "./srcfront/app/core/navbar/navbar.ts",
+        "./srcfront/app/core/notifications/notification-load.ts",
+        "./srcfront/app/core/notifications/notifications.ts",
+        "./srcfront/app/core/pipes/pipe.ts",
+        "./srcfront/app/core/sidebar/sidebar.ts",
+        "./srcfront/app/core/widget/widget.ts",
+        "./srcfront/app/dashboard/dashboard.ts",
+        "./srcfront/app/error/error.ts",
+        "./srcfront/app/login/login.ts",
+        "./srcfront/main.ts",
+        "./srcfront/polyfills.ts"
+    ]
+}

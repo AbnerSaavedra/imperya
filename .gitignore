@@ -1,9 +1,13 @@
 /app/config/parameters.yml
 /build/
+/bower_components
+/composer.phar
+/dist
 /grunt/node_modules
 /grunt/.sass-cache
 /grunt/.tmp
 /nbproject/
+/node_modules
 /phpunit.xml
 /var/*
 !/var/cache
@@ -19,7 +23,6 @@
 /vendor/
 /web/bundles/
 /web/tmp
-/web/uploads/*
 /web/uploads/documents/images/profile/*
 !web/uploads/.gitkeep
 !web/uploads/documents/images/profile/male.png

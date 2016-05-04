@@ -129,6 +129,8 @@ module.exports = {
         from: 'frontend/assets',
         to: 'assets'
       },
+      { from: 'frontend/bundles', to: 'bundles'},
+      { from: 'frontend/js',  to: 'js'},
       { from: 'frontend/.htaccess' },
       { from: 'frontend/app.php' },
       { from: 'frontend/app_dev.php'},

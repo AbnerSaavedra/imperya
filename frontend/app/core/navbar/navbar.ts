@@ -4,7 +4,8 @@ import {ROUTER_DIRECTIVES} from 'angular2/router';
 import {ConfigService} from '../config';
 import {Notifications} from '../notifications/notifications';
 declare var jQuery: any;
-
+declare var Routing: any;
+declare var fos: any;
 @Component({
   selector: '[navbar]',
   events: ['toggleSidebarEvent', 'toggleChatEvent'],
@@ -16,9 +17,9 @@ export class Navbar implements OnInit {
   toggleChatEvent: EventEmitter<any> = new EventEmitter();
   $el: any;
   config: any;
-
+  logoutRoute: any = Routing.generate('_arxis_logout');
   constructor(el: ElementRef, config: ConfigService) {
-    this.$el = jQuery(el.nativeElement);
+    this.$el = jQuery(el.nativeElement)
     this.config = config.getConfig();
   }
 

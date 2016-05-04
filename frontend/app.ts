@@ -13,7 +13,9 @@ declare var jQuery: any;
 @RouteConfig([
   { path: '/app/...', component: Core, name: 'App', useAsDefault: true },
   { path: '/error', component: ErrorPage, name: 'ErrorPage' },
-  { path: '/login', component: LoginPage, name: 'LoginPage' }
+  { path: '/login', component: LoginPage, name: 'LoginPage' },
+  { path: '/', redirectTo: ['App'] },
+  { path: '/**', redirectTo: ['ErrorPage'] }
 ])
 export class App {
 }

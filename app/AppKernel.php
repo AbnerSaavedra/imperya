@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             //bundles propias
             new AppBundle\AppBundle(),
             new Arxis\ContableBundle\ArxisContableBundle(),
+            new Multiservices\PayPayBundle\PayPayBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

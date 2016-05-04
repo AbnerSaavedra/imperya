@@ -9,7 +9,7 @@ use Multiservices\PayPayBundle\DBAL\Types\EstadoFacturaType;
 /**
  * Ingresos
  *
- * @ORM\Table(name="ingresos", indexes={@ORM\Index(name="representante_id", columns={"representante_id"}), @ORM\Index(name="collectedby", columns={"collectedby"})})
+ * @ORM\Table(name="ingresos", indexes={@ORM\Index(name="cliente_id", columns={"cliente_id"}), @ORM\Index(name="collectedby", columns={"collectedby"})})
  * @ORM\Entity(repositoryClass="Multiservices\PayPayBundle\Entity\IngresosRepository")
  */
 class Ingresos
@@ -97,14 +97,14 @@ class Ingresos
     private $referencia;
 
     /**
-     * @var \MultiacademicoBundle\Entity\Representantes
+     * @var \Arxis\ContableBundle\Entity\Contacto
      *
-     * @ORM\ManyToOne(targetEntity="\MultiacademicoBundle\Entity\Representantes", inversedBy="pagos")
+     * @ORM\ManyToOne(targetEntity="\Arxis\ContableBundle\Entity\Contacto", inversedBy="pagos")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="representante_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="cliente_id", referencedColumnName="id")
      * })
      */
-    private $representante;
+    private $cliente;
     
     
     /**
@@ -302,27 +302,27 @@ class Ingresos
     
 
     /**
-     * Set representante
+     * Set cliente
      *
-     * @param \MultiacademicoBundle\Entity\Representantes $representante
+     * @param \Arxis\ContableBundle\Entity\Contacto $cliente
      *
      * @return Ingresos
      */
-    public function setRepresentante(\MultiacademicoBundle\Entity\Representantes $representante = null)
+    public function setCliente(\Arxis\ContableBundle\Entity\Contacto $cliente = null)
     {
-        $this->representante = $representante;
+        $this->cliente = $cliente;
 
         return $this;
     }
 
     /**
-     * Get representante
+     * Get cliente
      *
-     * @return \MultiacademicoBundle\Entity\Representantes
+     * @return \Arxis\ContableBundle\Entity\Contacto
      */
-    public function getRepresentante()
+    public function getCliente()
     {
-        return $this->representante;
+        return $this->cliente;
     }
 
     /**

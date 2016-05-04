@@ -31,9 +31,9 @@ class Facturas
     private $legal=0;
 
     /**
-     * @var \MultiacademicoBundle\Entity\Representantes
+     * @var \Arxis\ContableBundle\Entity\Contacto
      *
-     * @ORM\ManyToOne(targetEntity="\MultiacademicoBundle\Entity\Representantes", inversedBy="facturas")
+     * @ORM\ManyToOne(targetEntity="\Arxis\ContableBundle\Entity\Contacto", inversedBy="facturas")
      * @ORM\JoinColumn(name="idcliente", referencedColumnName="id")
      * 
      */
@@ -143,10 +143,6 @@ class Facturas
      */
     private $items;
     
-     /**
-     * @ORM\OneToOne(targetEntity="MultiacademicoBundle\Entity\Pension", mappedBy="factura")
-     */
-    private $pension;
     
      /**
      * @ORM\ManyToMany(targetEntity="\Multiservices\PayPayBundle\Entity\Ingresos", mappedBy="facturas", cascade={"persist"})
@@ -200,30 +196,6 @@ class Facturas
     public function getLegal()
     {
         return $this->legal;
-    }
-
-    /**
-     * Set idcliente
-     *
-     * @param \MultiacademicoBundle\Entity\Representantes $idcliente
-     *
-     * @return Facturas
-     */
-    public function setIdcliente(\MultiacademicoBundle\Entity\Representantes $idcliente)
-    {
-        $this->idcliente = $idcliente;
-
-        return $this;
-    }
-
-    /**
-     * Get idcliente
-     *
-     * @return \MultiacademicoBundle\Entity\Representantes
-     */
-    public function getIdcliente()
-    {
-        return $this->idcliente;
     }
 
     /**
@@ -604,39 +576,11 @@ class Facturas
         }    
         return $this;
     }
-    /**
-     * Set pension
-     *
-     * @param \MultiacademicoBundle\Entity\Pension $pension
-     *
-     * @return Facturas
-     */
-    public function setPension(\MultiacademicoBundle\Entity\Pension $pension = null)
-    {
-        $this->pension = $pension;
-
-        return $this;
-    }
-
-    /**
-     * Get pension
-     *
-     * @return \MultiacademicoBundle\Entity\Pension
-     */
-    public function getPension()
-    {
-        return $this->pension;
-    }
     
     public function __toString() {
-        if ($this->getPension()!==null)
-        {
-        return strval($this->getId()) .' - '. $this->getPension()->getInfo() .' - '. $this->getPension()->getEstudiante().' - $'.$this->saldoAPagar();
-        }
-        else
-        {
+       
          return strval($this->getId()).' - $'.$this->saldoAPagar();   
-        }
+        
     }
 
     /**
@@ -695,5 +639,29 @@ class Facturas
     public function getDescuento()
     {
         return $this->descuento;
+    }
+
+    /**
+     * Set idcliente
+     *
+     * @param \Arxis\ContableBundle\Entity\Contacto $idcliente
+     *
+     * @return Facturas
+     */
+    public function setIdcliente(\Arxis\ContableBundle\Entity\Contacto $idcliente = null)
+    {
+        $this->idcliente = $idcliente;
+
+        return $this;
+    }
+
+    /**
+     * Get idcliente
+     *
+     * @return \Arxis\ContableBundle\Entity\Contacto
+     */
+    public function getIdcliente()
+    {
+        return $this->idcliente;
     }
 }

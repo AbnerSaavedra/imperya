@@ -54,31 +54,19 @@ class LoadDefaultUserRolesData implements FixtureInterface
         if (!$rolesecretaria)
         {
           $rolesecretaria = new Role();
-          $rolesecretaria->setName('ROLE_ADMIN');
+          $rolesecretaria->setName('ROLE_SECRETARIA');
         }
-        $roledocente=$manager->getRepository('MultiservicesArxisBundle:Role')->findOneByName('ROLE_DOCENTE');
-        if (!$roledocente)
+        $rolefacturacion=$manager->getRepository('MultiservicesArxisBundle:Role')->findOneByName('ROLE_FACTURACION');
+        if (!$rolefacturacion)
         {
-          $roledocente = new Role();
-          $roledocente->setName('ROLE_DOCENTE');
-        }
-        $roleestudiante=$manager->getRepository('MultiservicesArxisBundle:Role')->findOneByName('ROLE_ESTUDIANTE');
-        if (!$roleestudiante)
-        {
-          $roleestudiante = new Role();
-          $roleestudiante->setName('ROLE_ESTUDIANTE');
-        }
-        $rolecolectora=$manager->getRepository('MultiservicesArxisBundle:Role')->findOneByName('ROLE_COLECTORA');
-        if (!$rolecolectora)
-        {
-          $rolecolectora = new Role();
-          $rolecolectora->setName('ROLE_COLECTORA');
+          $rolefacturacion = new Role();
+          $rolefacturacion->setName('ROLE_FACTURACION');
         }
         
         $roles[]=$rolesuperadmin;
         $roles[]=$roleadmin;
         $roles[]=$rolesecretaria;
-        $roles[]=$rolecolectora;
+        $roles[]=$rolefacturacion;
         
             
         return $roles;
@@ -91,6 +79,10 @@ class LoadDefaultUserRolesData implements FixtureInterface
         if (!$userarxis)
         {
           $userarxis = new Usuario();
+          $userarxis->setUsername('arxis');
+          $userarxis->setPlainPassword('arxisla');
+          $rolesuperadmin=$manager->getRepository('MultiservicesArxisBundle:Role')->findOneByName('ROLE_SUPER_ADMIN');
+          $userarxis->addRole($rolesuperadmin);
           //$userarxis->setName('ROLE_SUPER_ADMIN');
         }
         

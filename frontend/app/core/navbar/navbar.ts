@@ -19,7 +19,7 @@ export class Navbar implements OnInit {
   config: any;
   logoutRoute: any = Routing.generate('_arxis_logout');
   constructor(el: ElementRef, config: ConfigService) {
-    this.$el = jQuery(el.nativeElement)
+    this.$el = jQuery(el.nativeElement);
     this.config = config.getConfig();
   }
 

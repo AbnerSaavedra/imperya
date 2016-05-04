@@ -18,12 +18,12 @@
 
   <!-- base url -->
     {% if(app.environment=='dev') %}     
-        <base href="{{asset('/')~'app_dev.php/'}}"/>
+        <base href="{{asset('/')~'app_dev.php'}}"/>
         {%else%}
         <base href="{{asset('/')~''}}"/>
     {%endif%}
   
-
+    
 </head>
 <body>
 {% block body %}{% endblock %}
@@ -39,5 +39,8 @@
     ga('send', 'pageview');
   </script>
   <script data-pace-options='{ "target": ".content-wrap", "ghostTime": 1000 }'></script>
-<script src="{{asset('polyfills.d503461087141a9c26f1.bundle.js')}}"></script><script src="{{asset('main.bundle.js')}}"></script></body>
+<script src="{{asset('polyfills.d503461087141a9c26f1.bundle.js')}}"></script><script src="{{asset('main.bundle.js')}}"></script>
+<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+<script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+</body>
 </html>

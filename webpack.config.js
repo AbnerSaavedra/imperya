@@ -28,7 +28,7 @@ module.exports = {
   // cache: false,
 
   // our angular app
-  entry: { 'polyfills': './srcfront/polyfills.ts', 'main': './srcfront/main.ts' },
+  entry: { 'polyfills': './frontend/polyfills.ts', 'main': './frontend/main.ts' },
 
   // Config for our build files
   output: {
@@ -63,7 +63,7 @@ module.exports = {
       { test: /\.css$/,   loader: 'raw-loader' },
 
       // support for .html as raw text
-      { test: /\.html$/,  loader: 'raw-loader', exclude: [ root('srcfront/index.html') ] },
+      { test: /\.html$/,  loader: 'raw-loader', exclude: [ root('frontend/index.html') ] },
 
       { test: /\.scss$/, loaders: ['raw-loader', 'sass-loader'] },
 
@@ -81,9 +81,16 @@ module.exports = {
     new webpack.optimize.OccurenceOrderPlugin(true),
     new webpack.optimize.CommonsChunkPlugin({ name: 'polyfills', filename: 'polyfills.bundle.js', minChunks: Infinity }),
     // static assets
-    new CopyWebpackPlugin([ { from: 'srcfront/assets', to: 'assets' } ]),
+    new CopyWebpackPlugin([ { from: 'frontend/assets', to: 'assets' },
+      { from: 'frontend/.htaccess' },
+      { from: 'frontend/app.php' },
+      { from: 'frontend/app_dev.php'},
+      { from: 'frontend/config.php'},
+      { from: 'frontend/favicon.ico' },
+      { from: 'frontend/apple-touch-icon.png'},
+      { from: 'frontend/robots.txt'}]),
     // generating html
-    new HtmlWebpackPlugin({ template: 'srcfront/index.html' }),
+    new HtmlWebpackPlugin({ template: 'frontend/index.html' }),
     // replace
     new webpack.DefinePlugin({
       'process.env': {
@@ -104,13 +111,13 @@ module.exports = {
   tslint: {
     emitErrors: true,
     failOnHint: true,
-    resourcePath: 'srcfront'
+    resourcePath: 'frontend'
   },
   // our Webpack Development Server config
   devServer: {
     port: metadata.port,
     host: metadata.host,
-    // contentBase: 'srcfront/',
+    // contentBase: 'frontend/',
     historyApiFallback: true,
     watchOptions: { aggregateTimeout: 300, poll: 1000 }
   },

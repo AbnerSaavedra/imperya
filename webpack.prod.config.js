@@ -21,7 +21,7 @@ var PORT = process.env.PORT || 8080;
 
 var metadata = {
   title: 'Imperya Template',
-  baseUrl: '/imperya/web/dist/',
+  baseUrl: '/imperya/web/',
   host: HOST,
   port: PORT,
   ENV: ENV
@@ -38,13 +38,13 @@ module.exports = {
   debug: false,
 
   entry: {
-    'polyfills':'./srcfront/polyfills.ts',
-    'main':'./srcfront/main.ts' // our angular app
+    'polyfills':'./frontend/polyfills.ts',
+    'main':'./frontend/main.ts' // our angular app
   },
 
   // Config for our build files
   output: {
-    path: root('web/dist'),
+    path: root('web'),
     filename: '[name].bundle.js',
     sourceMapFilename: '[name].map',
     chunkFilename: '[id].chunk.js'
@@ -101,7 +101,7 @@ module.exports = {
       { test: /\.css$/,   loader: 'raw-loader' },
 
       // support for .html as raw text
-      { test: /\.html$/,  loader: 'raw-loader', exclude: [ root('srcfront/index.html') ] },
+      { test: /\.html$/,  loader: 'raw-loader', exclude: [ root('frontend/index.html') ] },
 
       { test: /\.scss$/, loaders: ['raw-loader', 'sass-loader'] },
 
@@ -126,12 +126,19 @@ module.exports = {
     // static assets
     new CopyWebpackPlugin([
       {
-        from: 'srcfront/assets',
+        from: 'frontend/assets',
         to: 'assets'
-      }
+      },
+      { from: 'frontend/.htaccess' },
+      { from: 'frontend/app.php' },
+      { from: 'frontend/app_dev.php'},
+      { from: 'frontend/config.php'},
+      { from: 'frontend/favicon.ico' },
+      { from: 'frontend/apple-touch-icon.png'},
+      { from: 'frontend/robots.txt'}
     ]),
     // generating html
-    new HtmlWebpackPlugin({ template: 'srcfront/index.html' }),
+    new HtmlWebpackPlugin({ template: 'frontend/index.html' }),
     new DefinePlugin({
       // Environment helpers
       'process.env': {

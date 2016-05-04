@@ -30,7 +30,7 @@
         "incenteev/composer-parameter-handler": "^2.0",
         
         "friendsofsymfony/user-bundle": "~2.0@dev",
-        "friendsofsymfony/jsrouting-bundle": "dev-master",
+        "friendsofsymfony/jsrouting-bundle": "^1.6",
         "friendsofsymfony/rest-bundle": "^1.7",
         
         "fresh/doctrine-enum-bundle": "^4.1",

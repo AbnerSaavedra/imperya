@@ -18,9 +18,14 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             //bundles de terceros adicionales
             new Fresh\DoctrineEnumBundle\FreshDoctrineEnumBundle(),
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
+            new FOS\RestBundle\FOSRestBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle(),
             //bundles propias
             new AppBundle\AppBundle(),
             new Arxis\ContableBundle\ArxisContableBundle(),
+            new Multiservices\ArxisBundle\MultiservicesArxisBundle(),
             new Multiservices\PayPayBundle\PayPayBundle(),
         ];
 
@@ -29,6 +34,7 @@ class AppKernel extends Kernel
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
+            $bundles[] = new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle();
         }
 
         return $bundles;

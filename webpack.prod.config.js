@@ -21,7 +21,7 @@ var PORT = process.env.PORT || 8080;
 
 var metadata = {
   title: 'Imperya Template',
-  baseUrl: '/imperya/web/',
+  baseUrl: '/',
   host: HOST,
   port: PORT,
   ENV: ENV

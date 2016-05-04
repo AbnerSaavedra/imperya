@@ -7,7 +7,7 @@ imports:
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    locale: en
+    locale: es
 
 framework:
     #esi:             ~
@@ -70,3 +70,28 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: Multiservices\ArxisBundle\Entity\Usuario
+    registration:
+        form:
+            type: app_user_registration
+    group:
+        group_class: Multiservices\ArxisBundle\Entity\Grupo
+#sensio_framework_extra:
+#    view:
+#        annotations: false
+        
+fos_rest:
+    param_fetcher_listener: true
+    body_listener: true
+          
+    view:
+        view_response_listener:
+            enabled:              true
+            force:                false
+        serialize_null:       false
+    serializer:
+        serialize_null:       false

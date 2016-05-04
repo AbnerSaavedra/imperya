@@ -19,7 +19,6 @@
   <!-- base url -->
     {% if(app.environment=='dev') %}     
         <base href="{{asset('/')~'app_dev.php/'}}"/>
-        {#<base href="{{asset('/')~'dist/'}}"/>#}
         {%else%}
         <base href="{{asset('/')~''}}"/>
     {%endif%}

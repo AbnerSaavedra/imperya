@@ -47,13 +47,15 @@ DirectoryIndex index.html
     #   following RewriteCond (best solution)
     #RewriteCond %{ENV:REDIRECT_STATUS} ^$
     #RewriteRule ^app\.php(?:/(.*)|$) %{ENV:BASE}/$1 [R=301,L]
-    RewriteRule ^api/(.*) /app.php/api/$1 [L]
-
+    
     # If the requested filename exists, simply serve it.
     # We only want to let Apache serve files and not directories.
     RewriteCond %{REQUEST_FILENAME} -f
     RewriteRule ^ - [L]
 
+    RewriteRule ^api/(.*) /app.php/api/$1 [L]
+    RewriteRule ^login %{ENV:BASE}/app.php/login [L]
+    RewriteRule ^logout %{ENV:BASE}/app.php/logout [L]
     # Rewrite all other queries to the front controller.
     #RewriteRule ^ %{ENV:BASE}/app.php [L]
     RewriteRule .? %{ENV:BASE}/index.html [L]

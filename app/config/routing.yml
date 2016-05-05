@@ -15,12 +15,6 @@ _multiservices_arxis:
 #    prefix:   /    
 fos_js_routing:
     resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"  
-#fos_user_security_logout
-_arxis_logout:
-    path: /logout
-    defaults: {_controller: "FOSUserBundle:Security:logout"}
-    options:
-        expose: true
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 fos_user_secure:

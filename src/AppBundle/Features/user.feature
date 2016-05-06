@@ -16,6 +16,5 @@ Característica: Manejar Users data via the RESTful API
     #    Y cuando consuma el punto funal yo usare "headers/content-type" de "application/json"
    
     Escenario: Usuario no puede GET una coleccion de User objectos
-        Cuando yo envio "GET" request a "/usuario
-"
+        Cuando yo envio "GET" request a "/usuario"
         Entonces la respuestaa debe de ser 405    

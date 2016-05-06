@@ -73,12 +73,12 @@ swiftmailer:
 fos_user:
     db_driver: orm
     firewall_name: main
-    user_class: Multiservices\ArxisBundle\Entity\Usuario
+    user_class: AppBundle\Entity\Usuario
     registration:
         form:
             type: app_user_registration
     group:
-        group_class: Multiservices\ArxisBundle\Entity\Grupo
+        group_class: AppBundle\Entity\Grupo
 #sensio_framework_extra:
 #    view:
 #        annotations: false

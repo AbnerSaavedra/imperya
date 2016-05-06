@@ -8,7 +8,7 @@ framework:
 
 web_profiler:
     toolbar: true 
-
+    
 csa_guzzle:
     logger: true
     clients:

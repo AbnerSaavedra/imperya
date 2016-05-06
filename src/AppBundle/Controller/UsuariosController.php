@@ -13,6 +13,7 @@ use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use AppBundle\Entity\Usuario;
 
 /**
  * Class UsersController
@@ -32,15 +33,15 @@ class UsuariosController extends FOSRestController implements ClassResourceInter
      *   }
      * )
      *
-     * @param int   $userId     the user id
+     * @param AppBundle\Entity\Usuario $user
      *
      * @throws NotFoundHttpException when does not exist
      *
      * @return View
      */
-    public function getAction($userId)
+    public function getAction(Usuario $user)
     {
-        $user = $this->getDoctrine()->getRepository('AppBundle:Usuario')->find($userId);
+       // $user = $this->getDoctrine()->getRepository('AppBundle:Usuario')->find($userId);
 
         $view = $this->view($user);
 

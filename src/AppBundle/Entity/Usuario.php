@@ -138,15 +138,7 @@ class Usuario extends BaseUser
      */
     private $data;
     
-     /**
-     * se utilizó user_roles para no hacer conflicto al aplicar ->toArray en getRoles()
-     * @ORM\ManyToMany(targetEntity="Role")
-     * @ORM\JoinTable(name="user_role",
-     *     joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
-     *     inverseJoinColumns={@ORM\JoinColumn(name="role_id", referencedColumnName="id")}
-     * )
-     */
-    protected $user_roles;
+
     /**
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Grupo")
      * @ORM\JoinTable(name="user_grupo",
@@ -155,25 +147,13 @@ class Usuario extends BaseUser
      * )
      */
     protected $groups;
-    protected $roles;
+    
     
    public function __construct()
     {
-     //parent::__construct();
-        $this->salt = base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
-        $this->enabled = false;
-        $this->locked = false;
-        $this->expired = false;
-      //  $this->roles = array();
-        $this->credentialsExpired = false;
+        parent::__construct();
+        $this->addCreated();
    
-      
-    //$this->inbox= new \Doctrine\Common\Collections\ArrayCollection();
-    //$this->outbox= new \Doctrine\Common\Collections\ArrayCollection();
-    $this->user_roles = new \Doctrine\Common\Collections\ArrayCollection();
-    $this->roles = $this->user_roles;
-    $this->setRoles($this->user_roles->toArray());
-    $this->addCreated();
     }
     /**
     * Get id
@@ -221,60 +201,7 @@ class Usuario extends BaseUser
     return $this->path;
     }
    
-    /*
-    * Add user_roles
-    * 
-    * @param \AppBundle\Entity\Role $userRoles
-    */
-    public function addRole($userRoles)
-    {
-    $this->user_roles[] = $userRoles;
-    }
-    public function setUserRoles($roles) {
-    $this->user_roles = $roles;
-    }
-    /**
-    * Get user_roles
-    *
-    * @return \Doctrine\Common\Collections\Collection
-    */
-    public function getUserRoles()
-    {
-    return $this->user_roles;
-    }
-    /*
-    * Get roles
-    * @inheritDoc
-    * @return \Doctrine\Common\Collections\Collection
-    */
-    public function getRoles()
-    {
-        //return array('ROLE_USER');
-        return $this->user_roles->toArray();    //IMPORTANTE: el mecanismo de seguridad de Sf2 requiere ésto como un array
-    }
-    
-    /**
-     * Add user_roles
-     *
-     * @param \AppBundle\Entity\Role $userRoles
-     * @return User
-     */
-    public function addUserRole(\AppBundle\Entity\Role $userRoles)
-    {
-        $this->user_roles[] = $userRoles;
-
-        return $this;
-    }
-
-    /**
-     * Remove user_roles
-     *
-     * @param \AppBundle\Entity\Role $userRoles
-     */
-    public function removeUserRole(\AppBundle\Entity\Role $userRoles)
-    {
-        $this->user_roles->removeElement($userRoles);
-    }
+   
     
     /**
     * Set cargo

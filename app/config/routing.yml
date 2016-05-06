@@ -5,8 +5,6 @@ arxis_contable:
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
-_multiservices_arxis:
-    resource: "@MultiservicesArxisBundle/Resources/config/routing.yml"
 #notify:
 #    resource: "@NotifyBundle/Resources/config/routing.yml"
 #    prefix:   /

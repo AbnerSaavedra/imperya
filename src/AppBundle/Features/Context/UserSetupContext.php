@@ -28,30 +28,13 @@ class UserSetupContext implements Context, SnippetAcceptingContext
      * @param UserManagerInterface $userManager
      * @param EntityManagerInterface $em
      */
-    public function __construct(UserManagerInterface $userManager, EntityManagerInterface $em,\Doctrine\Common\Persistence\ManagerRegistry $doctrine)
+    public function __construct(UserManagerInterface $userManager, EntityManagerInterface $em)
     {
         $this->userManager = $userManager;
         $this->em = $em;
         
-        $this->manager = $doctrine->getManager();
-
-        $this->schemaTool = new \Doctrine\ORM\Tools\SchemaTool($this->manager);
-
-        $this->classes = $this->manager->getMetadataFactory()->getAllMetadata();
     }
 
-    /**
-     * @BeforeScenario
-     */
-    public function createSchema()
-    {
-        echo '-- DROP SCHEMA -- ' . "\n\n\n";
-        $this->schemaTool->dropSchema($this->classes);
-
-        echo '-- CREATE SCHEMA -- ' . "\n\n\n";
-        $this->schemaTool->createSchema($this->classes);
-    }
-    
     /**
      * @Given there are users with the following details:
      */

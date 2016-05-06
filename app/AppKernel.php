@@ -29,7 +29,6 @@ class AppKernel extends Kernel
             //bundles propias
             new AppBundle\AppBundle(),
             new Arxis\ContableBundle\ArxisContableBundle(),
-            new Multiservices\ArxisBundle\MultiservicesArxisBundle(),
             new Multiservices\PayPayBundle\PayPayBundle(),
         ];
 

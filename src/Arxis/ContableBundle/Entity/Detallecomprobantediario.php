@@ -38,14 +38,14 @@ class Detallecomprobantediario
     /**
      * @var float
      *
-     * @ORM\Column(name="Debe", type="decimal", precision=12, scale=2, nullable=false, options={"default":"0.00","unsigned":true})
+     * @ORM\Column(name="Debe", type="decimal", precision=12, scale=2, nullable=false, options={"default":"0.00"})
      */
     private $debe = '0.00';
 
     /**
      * @var float
      *
-     * @ORM\Column(name="Haber", type="decimal", precision=12, scale=2, nullable=false, options={"default":"0.00","unsigned":true})
+     * @ORM\Column(name="Haber", type="decimal", precision=12, scale=2, nullable=false, options={"default":"0.00"})
      */
     private $haber = '0.00';
 

@@ -5,6 +5,11 @@ arxis_contable:
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
+#rutas del back o api         
+usuarios_api:
+    type: rest
+    resource: "@AppBundle/Controller/UsuariosController.php"
+    #prefix: api     
 #notify:
 #    resource: "@NotifyBundle/Resources/config/routing.yml"
 #    prefix:   /

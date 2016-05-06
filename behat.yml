@@ -4,10 +4,14 @@ default:
             type: symfony_bundle
             bundle: AppBundle
             contexts:
+                - FeatureContext:
+                    doctrine: "@doctrine"
+                - AppBundle\Features\Context\RestApiContext:
+                    client: "@csa_guzzle.client.local_test_api"
+                    dummyDataPath: "%paths.base%/features/Dummy/"
                 - AppBundle\Features\Context\UserSetupContext:
                     userManager: "@fos_user.user_manager"
                     em: "@doctrine.orm.entity_manager"
-                    doctrine: "@doctrine"
     extensions:
         Behat\Symfony2Extension:
             kernel:
@@ -15,7 +19,7 @@ default:
                 debug: "true"
 
         Behat\MinkExtension:
-            base_url: "http://localhost/imperya/web/app_acceptance.php/"
+            base_url: "http://imperya/app_acceptance.php/"
             sessions:
                 defaults:
                     symfony2: ~

@@ -23,17 +23,17 @@ use AppBundle\Entity\Usuario;
 class UsuariosController extends FOSRestController implements ClassResourceInterface
 {
     /**
-     * Get a single User.
+     * Obtiene un simple Usuario.
      *
      * @ApiDoc(
      *   output = "AppBundle\Entity\Usuario",
      *   statusCodes = {
-     *     200 = "Returned when successful",
-     *     404 = "Returned when not found"
+     *     200 = "Retornado cuando se completa exitosamente",
+     *     404 = "Retornado cuando no se ecuentra"
      *   }
      * )
      *
-     * @param AppBundle\Entity\Usuario $user
+     * @param AppBundle\Entity\Usuario|integer $user
      *
      * @throws NotFoundHttpException when does not exist
      *
@@ -41,7 +41,6 @@ class UsuariosController extends FOSRestController implements ClassResourceInter
      */
     public function getAction(Usuario $user)
     {
-       // $user = $this->getDoctrine()->getRepository('AppBundle:Usuario')->find($userId);
 
         $view = $this->view($user);
 
@@ -49,7 +48,7 @@ class UsuariosController extends FOSRestController implements ClassResourceInter
     }
 
     /**
-     * Gets a collection of Users.
+     * Obtiene una coleccion de Usuarios.
      *
      * @ApiDoc(
      *   output = "AppBundle\Entity\Usuario",

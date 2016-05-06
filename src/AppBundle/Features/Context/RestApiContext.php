@@ -86,9 +86,9 @@ class RestApiContext implements Context
      * @param string $username
      * @param string $password
      *
-     * @Given /^I am successfully logged in with username: "([^"]*)", and password: "([^"]*)"$/
+     * @Given /^me logueare con el siguiente username: "([^"]*)", y contraseña: "([^"]*)"$/
      */
-    public function iAmSuccessfullyLoggedInWithUsernameAndPassword($username, $password)
+    public function meLogueareConElSiguienteUsernameYContrasena($username, $password)
     {
         $response = $this->client->post('login', [
             'json' => [
@@ -146,7 +146,7 @@ class RestApiContext implements Context
         //$this->request = $this->getClient()->createRequest($method, $url);
         $this->request= new Request($method, $url);
         if (!empty($this->headers)) {
-            $this->request->addHeaders($this->headers);
+            $this->request= new Request($method, $url, $this->headers);
         }
 
         $this->sendRequest();

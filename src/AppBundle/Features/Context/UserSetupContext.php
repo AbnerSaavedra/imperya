@@ -7,8 +7,6 @@ use Behat\Gherkin\Node\TableNode;
 use Behat\Behat\Context\SnippetAcceptingContext;
 use Doctrine\ORM\EntityManagerInterface;
 use FOS\UserBundle\Model\UserManagerInterface;
-use Behat\Behat\Hook\Scope\BeforeScenarioScope;
-use Behat\Behat\Hook\Scope\AfterScenarioScope;
 use Behat\Behat\Tester\Exception\PendingException;
 
 class UserSetupContext implements Context, SnippetAcceptingContext
@@ -36,7 +34,7 @@ class UserSetupContext implements Context, SnippetAcceptingContext
     }
 
     /**
-     * @Given there are users with the following details:
+     * @Given estos usuarios con los siguientes detalles:
      */
     public function estosUsuariosConLosSiguientesDetalles(TableNode $users)
     {
@@ -53,8 +51,8 @@ class UserSetupContext implements Context, SnippetAcceptingContext
 
             $qb = $this->em->createQueryBuilder();
 
-            $query = $qb->update('AppBundle:User', 'u')
-                ->set('u.id', $qb->expr()->literal($val['uid']))
+            $query = $qb->update('AppBundle:Usuario', 'u')
+                ->set('u.id', $qb->expr()->literal($val['id']))
                 ->where('u.username = :username')
                 ->andWhere('u.email = :email')
                 ->setParameters([
@@ -66,28 +64,5 @@ class UserSetupContext implements Context, SnippetAcceptingContext
 
             $query->execute();
         }
-    }
-    /**
-     * @Given estos Usuarios con los siguientes detalles:
-     */
-    public function estosUsuariosConLosSiguientesDetalles2(TableNode $table)
-    {
-        throw new PendingException();
-    }
-
-    /**
-     * @When yo envio :arg1 request a :arg2
-     */
-    public function yoEnvioRequestA($arg1, $arg2)
-    {
-        throw new PendingException();
-    }
-
-    /**
-     * @Then la respuestaa debe de ser :arg1
-     */
-    public function laRespuestaaDebeDeSer($arg1)
-    {
-        throw new PendingException();
     }
 }

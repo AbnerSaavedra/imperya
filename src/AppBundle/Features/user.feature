@@ -14,7 +14,20 @@ Característica: Manejar Users data via the RESTful API
             | 2  | john     | john@test.org      | johnpass |
     #    Y me logueare con el siguiente username: "peter", y contraseña: "testpass"
     #    Y cuando consuma el punto funal yo usare "headers/content-type" de "application/json"
-   
-    Escenario: Usuario no puede GET una coleccion de User objectos
-        Cuando yo envio "GET" request a "/usuario"
-        Entonces la respuestaa debe de ser 405    
+    Escenario: User cannot GET a Collection of User objects
+        Cuando Yo envio una solicitud "GET" a "/usuarios"
+        Entonces el codigo de respuesta debe de ser 405     
+    Escenario: User can GET their personal data by their unique ID
+        Cuando Yo envio una solicitud "GET" a "/usuarios/1"
+        Entonces el codigo de respuesta debe de ser 200
+        Y la cabecera de respuesta "Content-Type" debe ser igual a "application/json; charset=UTF-8"
+        Y la respuesta debe contener un json:
+        """
+        {
+            "id":1,
+             "username":"arxis",
+             "email":"renearias@arxis.la",
+             "picture":"uploads\/documents\/images\/profile\/male.png",
+             "name":""
+        }
+        """    

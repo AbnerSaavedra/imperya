@@ -20,7 +20,12 @@ class AppKernel extends Kernel
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new FOS\RestBundle\FOSRestBundle(),
+            new Nelmio\CorsBundle\NelmioCorsBundle(),
+            new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
+            new Csa\Bundle\GuzzleBundle\CsaGuzzleBundle(),
+            new Lexik\Bundle\JWTAuthenticationBundle\LexikJWTAuthenticationBundle(),
+            new Oneup\FlysystemBundle\OneupFlysystemBundle(),
             //bundles propias
             new AppBundle\AppBundle(),
             new Arxis\ContableBundle\ArxisContableBundle(),
@@ -28,7 +33,7 @@ class AppKernel extends Kernel
             new Multiservices\PayPayBundle\PayPayBundle(),
         ];
 
-        if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
+        if (in_array($this->getEnvironment(), ['dev', 'test','acceptance'], true)) {
             $bundles[] = new Symfony\Bundle\DebugBundle\DebugBundle();
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();

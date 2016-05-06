@@ -33,3 +33,9 @@ monolog:
 
 #swiftmailer:
 #    delivery_address: me@example.com
+csa_guzzle:
+    logger: true
+    clients:
+        local_test_api:
+            config:
+                base_url: http://imperya/app_dev.php/

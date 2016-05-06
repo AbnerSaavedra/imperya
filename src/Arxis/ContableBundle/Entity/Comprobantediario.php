@@ -73,7 +73,7 @@ class Comprobantediario
     /**
      * @var decimal
      *
-     * @ORM\Column(name="Haber", type="decimal", precision=10, scale=2, nullable=false, options={"default":"0.00"})  
+     * @ORM\Column(name="Haber", type="decimal", precision=12, scale=2, nullable=false, options={"default":"0.00"})  
      *
      */
     private $haber = 0.00;

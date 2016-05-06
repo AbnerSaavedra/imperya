@@ -339,7 +339,6 @@ class RestApiContext implements Context
                 "Can not convert etalon to json:\n" . $this->replacePlaceHolder($jsonString->getRaw())
             );
         }
-        var_dump($actual,$etalon);
         Assertions::assertGreaterThanOrEqual(count($etalon), count($actual));
         foreach ($etalon as $key => $needle) {
             Assertions::assertArrayHasKey($key, $actual);

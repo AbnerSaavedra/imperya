@@ -24,9 +24,9 @@ class Ingresos
     private $id;
 
     /**
-     * @var \Multiservices\ArxisBundle\Entity\Usuario
+     * @var \AppBundle\Entity\Usuario
      *
-     * @ORM\ManyToOne(targetEntity="\Multiservices\ArxisBundle\Entity\Usuario")
+     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Usuario")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="collectedby", referencedColumnName="id")
      * })
@@ -34,9 +34,9 @@ class Ingresos
     private $collectedby;
     
     /**
-     * @var \Multiservices\ArxisBundle\Entity\Usuario
+     * @var \AppBundle\Entity\Usuario
      *
-     * @ORM\ManyToOne(targetEntity="\Multiservices\ArxisBundle\Entity\Usuario")
+     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Usuario")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="modifiedby", referencedColumnName="id")
      * })
@@ -139,10 +139,10 @@ class Ingresos
     /**
      * Set collectedby
      *
-     * @param \Multiservices\ArxisBundle\Entity\Usuario $collectedby
+     * @param \AppBundle\Entity\Usuario $collectedby
      * @return Ingresos
      */
-    public function setCollectedby(\Multiservices\ArxisBundle\Entity\Usuario $collectedby = null)
+    public function setCollectedby(\AppBundle\Entity\Usuario $collectedby = null)
     {
         $this->collectedby = $collectedby;
 
@@ -152,7 +152,7 @@ class Ingresos
     /**
      * Get collectedby
      *
-     * @return \Multiservices\ArxisBundle\Entity\Usuario
+     * @return \AppBundle\Entity\Usuario
      */
     public function getCollectedby()
     {
@@ -162,10 +162,10 @@ class Ingresos
     /**
      * Set modifiedby
      *
-     * @param \Multiservices\ArxisBundle\Entity\Usuario $modifiedby
+     * @param \AppBundle\Entity\Usuario $modifiedby
      * @return Ingresos
      */
-    public function setModifiedby(\Multiservices\ArxisBundle\Entity\Usuario $modifiedby = null)
+    public function setModifiedby(\AppBundle\Entity\Usuario $modifiedby = null)
     {
         $this->modifiedby = $modifiedby;
 
@@ -175,7 +175,7 @@ class Ingresos
     /**
      * Get modifiedby
      *
-     * @return \Multiservices\ArxisBundle\Entity\Usuario
+     * @return \AppBundle\Entity\Usuario
      */
     public function getModifiedby()
     {

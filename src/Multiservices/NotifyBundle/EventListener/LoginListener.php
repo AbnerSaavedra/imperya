@@ -71,7 +71,7 @@ class LoginListener implements EventSubscriberInterface
       
        $user = $token->getUser();
        //var_dump($user);
-       if ($user instanceof \Multiservices\ArxisBundle\Entity\Usuario)
+       if ($user instanceof \AppBundle\Entity\Usuario)
        {
         $registrador=$this->container->get('activityregistrador');
         $datainitsesion=new UserInitSession();

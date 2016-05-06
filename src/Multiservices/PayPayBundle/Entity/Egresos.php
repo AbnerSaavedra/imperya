@@ -22,9 +22,9 @@ class Egresos
     private $id;
 
     /**
-     * @var \Multiservices\ArxisBundle\Entity\Usuario
+     * @var \AppBundle\Entity\Usuario
      *
-     * @ORM\ManyToOne(targetEntity="\Multiservices\ArxisBundle\Entity\Usuario")
+     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Usuario")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="paidby", referencedColumnName="id")
      * })
@@ -32,9 +32,9 @@ class Egresos
     private $paidby;
     
     /**
-     * @var \Multiservices\ArxisBundle\Entity\Usuario
+     * @var \AppBundle\Entity\Usuario
      *
-     * @ORM\ManyToOne(targetEntity="\Multiservices\ArxisBundle\Entity\Usuario")
+     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Usuario")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="modifiedby", referencedColumnName="id")
      * })
@@ -97,10 +97,10 @@ class Egresos
     /**
      * Set paidby
      *
-     * @param \Multiservices\ArxisBundle\Entity\Usuario $paidby
+     * @param \AppBundle\Entity\Usuario $paidby
      * @return Egresos
      */
-    public function setPaidby(\Multiservices\ArxisBundle\Entity\Usuario $paidby = null)
+    public function setPaidby(\AppBundle\Entity\Usuario $paidby = null)
     {
         $this->paidby = $paidby;
 
@@ -110,7 +110,7 @@ class Egresos
     /**
      * Get paidby
      *
-     * @return \Multiservices\ArxisBundle\Entity\Usuario
+     * @return \AppBundle\Entity\Usuario
      */
     public function getPaidby()
     {
@@ -120,10 +120,10 @@ class Egresos
     /**
      * Set modifiedby
      *
-     * @param \Multiservices\ArxisBundle\Entity\Usuario $modifiedby
+     * @param \AppBundle\Entity\Usuario $modifiedby
      * @return Egresos
      */
-    public function setModifiedby(\Multiservices\ArxisBundle\Entity\Usuario $modifiedby = null)
+    public function setModifiedby(\AppBundle\Entity\Usuario $modifiedby = null)
     {
         $this->modifiedby = $modifiedby;
 
@@ -133,7 +133,7 @@ class Egresos
     /**
      * Get modifiedby
      *
-     * @return \Multiservices\ArxisBundle\Entity\Usuario
+     * @return \AppBundle\Entity\Usuario
      */
     public function getModifiedby()
     {

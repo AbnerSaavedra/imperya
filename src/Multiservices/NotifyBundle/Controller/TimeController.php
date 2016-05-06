@@ -10,7 +10,7 @@
  * @author Rene Arias <renearias@multiservices.com.ec>
  */
 
-namespace Multiservices\ArxisBundle\Controller;
+namespace Multiservices\NotifyBundle\Controller;
 
 class TimeController {
     

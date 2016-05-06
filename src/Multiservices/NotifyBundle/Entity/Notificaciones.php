@@ -157,9 +157,9 @@ class Notificaciones
     }
 
     /**
-     * @var \Multiservices\ArxisBundle\Entity\Usuario
+     * @var \AppBundle\Entity\Usuario
      *
-     * @ORM\ManyToOne(targetEntity="\Multiservices\ArxisBundle\Entity\Usuario")
+     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Usuario")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="notificacionuser", referencedColumnName="id")
      * })
@@ -396,10 +396,10 @@ class Notificaciones
     /**
      * Set notificacionuser
      *
-     * @param \Multiservices\ArxisBundle\Entity\Usuario $notificacionuser
+     * @param \AppBundle\Entity\Usuario $notificacionuser
      * @return Notificaciones
      */
-    public function setNotificacionuser(\Multiservices\ArxisBundle\Entity\Usuario $notificacionuser = null)
+    public function setNotificacionuser(\AppBundle\Entity\Usuario $notificacionuser = null)
     {
         $this->notificacionuser = $notificacionuser;
 

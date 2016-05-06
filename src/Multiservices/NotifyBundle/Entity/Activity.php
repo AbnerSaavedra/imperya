@@ -27,9 +27,9 @@ class Activity
     /**
      * options={"comment":"The users.uid of the user who triggered the event."}
      * 
-     * @var \Multiservices\ArxisBundle\Entity\Usuario
+     * @var \AppBundle\Entity\Usuario
      *
-     * @ORM\ManyToOne(targetEntity="\Multiservices\ArxisBundle\Entity\Usuario")
+     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Usuario")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="uid", referencedColumnName="id", nullable=false)
      * })
@@ -140,10 +140,10 @@ class Activity
     /**
      * Set uid
      *
-     * @param \Multiservices\ArxisBundle\Entity\Usuario $uid
+     * @param \AppBundle\Entity\Usuario $uid
      * @return Activity
      */
-    public function setUid(\Multiservices\ArxisBundle\Entity\Usuario $uid)
+    public function setUid(\AppBundle\Entity\Usuario $uid)
     {
         $this->uid = $uid;
 
@@ -153,7 +153,7 @@ class Activity
     /**
      * Get uid
      *
-     * @return \Multiservices\ArxisBundle\Entity\Usuario
+     * @return \AppBundle\Entity\Usuario
      */
     public function getUid()
     {

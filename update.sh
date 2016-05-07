@@ -13,4 +13,5 @@ php bin/console cache:clear --env prod
 #chmod 755 index.php
 chmod 755 web/app.php
 chmod 755 web/app_dev.php
+chmod 755 web/app_acceptance.php
 chmod 755 update.sh

@@ -14,10 +14,10 @@ use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 use Multiservices\PayPayBundle\Entity\Facturas;
-use MultiacademicoBundle\Entity\Representantes;
+use Arxis\ContableBundle\Entity\Contacto as Cliente;
 use Multiservices\PayPayBundle\Entity\Ingresos;
 
-use MultiacademicoBundle\Form\Type\RepresentanteType;
+//use ContableBundle\Form\Type\ClienteType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 
@@ -31,7 +31,7 @@ class IngresosType extends AbstractType
     {
         $builder
             ->add('fecha', DateTimeType::class)
-            ->add('representante',  RepresentanteType::class)
+            ->add('cliente') //,  ClienteType::class)
             ->add('monto',NumberType::class,['attr'=>
                                                     ['step'=>'0.01']]
                                             )
@@ -45,7 +45,7 @@ class IngresosType extends AbstractType
                 ;
                 
                 
-           $formModifier = function (FormInterface $form, Representantes $representante = null, PersistentCollection $facturas=null) {
+           $formModifier = function (FormInterface $form, Cliente $cliente = null, PersistentCollection $facturas=null) {
                 
                $facturas = null === $facturas ? array() : $facturas->toArray();
                 
@@ -55,8 +55,8 @@ class IngresosType extends AbstractType
                     //'choices'     => $facturas,
                     'multiple'=>true,
                     'property_path' => 'facturas',
-                    'query_builder' => function (EntityRepository $er) use($representante,$facturas)  {
-                         return $er->facturasPendientes($representante,$facturas);
+                    'query_builder' => function (EntityRepository $er) use($cliente,$facturas)  {
+                         return $er->facturasPendientes($cliente,$facturas);
                     }
                 );
                 
@@ -68,21 +68,21 @@ class IngresosType extends AbstractType
             function (FormEvent $event) use ($formModifier) {
                 // this would be your entity, i.e. Ingresos
                 $data = $event->getData();
-
-                $formModifier($event->getForm(), $data->getRepresentante(),$data->getFacturas());
+                //esta data debe ser descomentada
+                //$formModifier($event->getForm(), $data->getCliente(),$data->getFacturas());
             }
         );
 
-        $builder->get('representante')->addEventListener(
+        $builder->get('cliente')->addEventListener(
             FormEvents::POST_SUBMIT,
             function (FormEvent $event) use ($formModifier) {
                 // It's important here to fetch $event->getForm()->getData(), as
                 // $event->getData() will get you the client data (that is, the ID)
-                $representante = $event->getForm()->getData();
+                $cliente = $event->getForm()->getData();
                 $facturas = $event->getForm()->getParent()->getData()->getFacturas();
                 // since we've added the listener to the child, we'll have to pass on
                 // the parent to the callback functions!
-                $formModifier($event->getForm()->getParent(), $representante,$facturas);
+                $formModifier($event->getForm()->getParent(), $cliente,$facturas);
             }
         );    
             

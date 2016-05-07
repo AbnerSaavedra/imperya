@@ -70,7 +70,7 @@ class Ingresos
      * @ORM\Column(name="cambio", type="float", precision=10, scale=2, nullable=false)
      * 
      */
-    private $cambio;
+    private $cambio=0;
     
     /**
      * @var string

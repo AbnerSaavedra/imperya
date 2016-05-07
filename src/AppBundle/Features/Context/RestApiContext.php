@@ -92,8 +92,8 @@ class RestApiContext implements Context
     {
         $response = $this->client->post('login', [
             'json' => [
-                'username' => $username,
-                'password' => $password,
+                '_username' => $username,
+                '_password' => $password,
             ]
         ]);
 
@@ -104,9 +104,9 @@ class RestApiContext implements Context
     }
 
     /**
-     * @Given when consuming the endpoint I use the :header of :value
+     * @Given cuando consuma el punto final yo usare :header de :value
      */
-    public function whenConsumingTheEndpointIUseTheOf($header, $value)
+    public function cuandoConsumaElPuntoFinalYoUsareDe($header, $value)
     {
         $this->client->setDefaultOption($header, $value);
     }

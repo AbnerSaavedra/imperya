@@ -13,7 +13,7 @@ Característica: Manejar Users data via the RESTful API
             | 1  | arxis    | renearias@arxis.la | arxisla  |
             | 2  | john     | john@test.org      | johnpass |
         Y me logueare con el siguiente username: "arxis", y contraseña: "arxisla"
-    #    Y cuando consuma el punto final yo usare "headers/content-type" de "application/json"
+        #Y cuando consuma el punto final yo usare "headers/content-type" de "application/json"
     Escenario: User cannot GET a Collection of User objects
         Cuando Yo envio una solicitud "GET" a "/usuarios"
         Entonces el codigo de respuesta debe de ser 405     
@@ -31,10 +31,10 @@ Característica: Manejar Users data via the RESTful API
              "name":""
         }
         """    
-     Escenario: Usuario no puede OBTENER una diferente User's personal data
-        Cuando Yo envio una solicitud "GET" a "/usuarios/2"
-        Entonces el codigo de respuesta debe de ser 403
+     #Escenario: Usuario no puede OBTENER una diferente User's personal data
+     #   Cuando Yo envio una solicitud "GET" a "/usuarios/2"
+     #   Entonces el codigo de respuesta debe de ser 403
 
-    Escenario: Usuario no puede determinar si otro usuario esta activo
-        Cuando Yo envio una solicitud "GET" a "/usuarios/100"
-        Entonces el codigo de respuesta debe de ser 403
+    #Escenario: Usuario no puede determinar si otro usuario esta activo
+     #   Cuando Yo envio una solicitud "GET" a "/usuarios/100"
+     #   Entonces el codigo de respuesta debe de ser 403

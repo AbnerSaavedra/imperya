@@ -11,6 +11,8 @@
 {% endif %}
      * @ApiDoc(
      *   resource = true,
+     *   input = "{{ namespace }}\Form\{{ entity }}Type",
+     *   output = "{{ namespace }}\Entity\{{ entity_class }}",
      *   section="{{ entity }}",
      *    statusCodes = {
      *      204="Returned when an existing {{ entity }} has been successfully updated",

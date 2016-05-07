@@ -12,6 +12,8 @@
      * @ApiDoc(
      *   resource = true,
      *   section="{{ entity }}",
+     *   input = "{{ namespace }}\Form\{{ entity }}Type",
+     *   output = "{{ namespace }}\Entity\{{ entity_class }}",
      *    statusCodes = {
      *      201 = "Retorna cuando se crea un nuevo {{ entity }}",
      *      400 = "Returna cuando el formulario contiene errores" 

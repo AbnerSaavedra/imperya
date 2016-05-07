@@ -3,9 +3,11 @@
 namespace Multiservices\PayPayBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
+use FOS\RestBundle\Routing\ClassResourceInterface;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
 use Multiservices\PayPayBundle\Entity\Facturas;
 use Multiservices\PayPayBundle\Form\FacturasType;
@@ -15,140 +17,219 @@ use Multiservices\PayPayBundle\Form\FacturasType;
  *
 * @Rest\RouteResource("Factura")
  */
-class FacturasController extends FOSRestController
+class FacturasController extends FOSRestController implements ClassResourceInterface
 {
     /**
      * Lists all Facturas entities.
      *
-     */
-    public function indexAction()
-    {
-        //$em = $this->getDoctrine()->getManager();
-
-        //$facturas = $em->getRepository('PayPayBundle:Facturas')->findAll();
-
-        $facturas_datatable = $this->get("paypaybundle_datatable.facturas");
-        $facturas_datatable->buildDatatable();
-
-        return $this->render('facturas/index.html.twig', array(
-            //'facturas' => $facturas,
-            'datatable'=>$facturas_datatable
-        ));
-    }
-
-    /**
-     * Get results from Facturas entity.
+     * @ApiDoc(
+     *   resource = true,
+     *   section="Facturas",
+     *   statusCodes = {
+     *     200 = "Returned when successful",
+     *     404 = "Returned when not found"
+     *   }
+     * )
+     *
+     * @Rest\View()
      *
      */
-    public function resultsAction(Request $request)
+    public function cgetAction()
     {
+        $em = $this->getDoctrine()->getManager();
 
-        $datatable = $this->get('paypaybundle_datatable.facturas');
-        $datatable->buildDatatable();
-        $query = $this->get('sg_datatables.query')->getQueryFrom($datatable);
+        $facturas = $em->getRepository('PayPayBundle:Facturas')->findAll();
 
-        return $query->getResponse();
+        //$facturas_datatable = $this->get("paypaybundle_datatable.facturas");
+        //$facturas_datatable->buildDatatable();
+
+        $view = $this->view($facturas)
+            ->setTemplate('facturas/index.html.twig')
+            ->setTemplateData([
+                            'facturas' => $facturas
+                             ]);
+        return $facturas;
     }
-
+    
     /**
-     * Creates a new Facturas entity.
+     * Crea una nueva Facturas entidad.
      *
-     * @Rest\Post() 
-     * @Rest\Get("/facturas/new", name="new_factura") 
+     * @ApiDoc(
+     *   resource = true,
+     *   section="Facturas",
+     *   input = "Multiservices\PayPayBundle\Form\FacturasType",
+     *   output = "Multiservices\PayPayBundle\Entity\Facturas",
+     *    statusCodes = {
+     *      201 = "Retorna cuando se crea un nuevo Facturas",
+     *      400 = "Returna cuando el formulario contiene errores" 
+     *   }
+     * )
+     * @Rest\View(
+     *   template = "facturas/new.html.twig",
+     *   statusCode = Response::HTTP_BAD_REQUEST
+     * )
+     *
+     * @param Request $request the request object
+     *
+     * @return FormTypeInterface[]|View
      */
-    public function newAction(Request $request)
+    public function postAction(Request $request)
     {
-        $factura = new Facturas();
-        $form = $this->createForm('Multiservices\PayPayBundle\Form\FacturasType', $factura);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($factura);
-            $em->flush();
-
-            return $this->redirectToRoute('facturas', array('page' => $facturas->getId()));
+        try {
+            $factura = $this->getHandler()->post(
+                new Facturas(),
+                $request->request->all()
+            );
+            $routeOptions = array(
+                'factura'        => $factura->getId(),
+                '_format'    => $request->get('_format'),
+            );
+            return $this->routeRedirectView(
+                'get_factura',
+                $routeOptions,
+                Response::HTTP_CREATED
+            );
+        } catch (InvalidFormException $e) {
+            return $e->getForm();
         }
-
-        return $this->render('facturas/new.html.twig', array(
-            'factura' => $factura,
-            'form' => $form->createView(),
-        ));
     }
 
     /**
      * Finds and displays a Facturas entity.
      *
-     * @Rest\Get() 
+     * @ApiDoc(
+     *   resource = true,
+     *   output = "Multiservices\PayPayBundle\Entity\Facturas",
+     *   section="Facturas",
+     *    statusCodes = {
+     *      200 = "Retorna la entidad Facturas",
+     *      404 = "Retorna cuando no se ecuentra objeto" 
+     *   }
+     * )
+     *
      */
-    public function showAction(Facturas $factura)
+    public function getAction(Facturas $factura)
     {
-        $deleteForm = $this->createDeleteForm($factura);
-
-        return $this->render('facturas/show.html.twig', array(
-            'factura' => $factura,
-            'delete_form' => $deleteForm->createView(),
-        ));
+        
+        $view = $this->view($factura, 200)
+            ->setTemplate('facturas/show.html.twig')
+            ->setTemplateData(['factura'=>$factura]);
+        return $this->handleView($view);
     }
 
     /**
-     * Displays a form to edit an existing Facturas entity.
+     * Replaces an existing Facturas entity.
      *
-     * @Rest\Post() 
-     * @Rest\Get("/facturas/{factura}/edit", name="edit_factura") 
+     * @ApiDoc(
+     *   resource = true,
+     *   input = "Multiservices\PayPayBundle\Form\FacturasType",
+     *   output = "Multiservices\PayPayBundle\Entity\Facturas",
+     *   section="Facturas",
+     *    statusCodes = {
+     *      201="Retorna cuando Facturas ha sido creado exitosamente",
+     *      204="Retorna cuando un existente Facturas ha sido actualizado exitosamente",
+     *      400="Retorna cuando la data del formulario es invalida"
+     *   }
+     * )
+     * @param Request $request
+     * @param integer $id
+     * @return array|\FOS\RestBundle\View\View|null
      */
-    public function editAction(Request $request, Facturas $factura)
+    public function putAction(Request $request, $id)
     {
-        $deleteForm = $this->createDeleteForm($factura);
-        $editForm = $this->createForm('Multiservices\PayPayBundle\Form\FacturasType', $factura);
-        $editForm->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
+        $factura = $em->getRepository('PayPayBundle:Facturas')->find($id);
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($factura);
-            $em->flush();
-
-            return $this->redirectToRoute('facturas', array('page' => $factura->getId().'/edit'));
+        try {
+            if ($factura === null) {
+                $statusCode = Response::HTTP_CREATED;
+                $factura = $this->getHandler()->post(
+                    new Facturas(),
+                    $request->request->all()
+                );
+            } else {
+                $statusCode = Response::HTTP_NO_CONTENT;
+                $factura = $this->getHandler()->put(
+                    $factura,
+                    $request->request->all()
+                );
+            }
+            $routeOptions = array(
+                'factura'        => $factura->getId(),
+                '_format'   => $request->get('_format')
+            );
+            return $this->routeRedirectView('get_factura', $routeOptions, $statusCode);
+        } catch (InvalidFormException $e) {
+            return $e->getForm();
         }
+    }
 
-        return $this->render('facturas/edit.html.twig', array(
-            'factura' => $factura,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
+    /**
+     * Updates an existing Facturas entity.
+     *
+     * @ApiDoc(
+     *   resource = true,
+     *   input = "Multiservices\PayPayBundle\Form\FacturasType",
+     *   output = "Multiservices\PayPayBundle\Entity\Facturas",
+     *   section="Facturas",
+     *    statusCodes = {
+     *      204="Returned when an existing Facturas has been successfully updated",
+     *      400="Returned when the posted data is invalid",
+     *      404="Returned when trying to update a non existent Facturas"
+     *   }
+     * )
+     * @param Request $request
+     * @param Facturas $factura
+     * @return array|\FOS\RestBundle\View\View|null
+     */
+    public function patchAction(Request $request, Facturas $factura)
+    {
+        
+
+        try {
+            $factura = $this->getHandler()->patch(
+                $factura,
+                $request->request->all()
+            );
+            $routeOptions = array(
+                'factura'        => $factura->getId(),
+                '_format'   => $request->get('_format')
+            );
+            return $this->routeRedirectView('get_factura', $routeOptions, Response::HTTP_NO_CONTENT);
+        } catch (InvalidFormException $e) {
+            return $e->getForm();
+        }
     }
 
     /**
      * Deletes a Facturas entity.
      *
+     * @ApiDoc(
+     *      resource = true,
+     *      section="Facturas",
+     *      statusCodes = {
+     *         204="Retorna cuando Facturas existente  ha sido eliminado completamente",
+     *         404="Retorna cuando intenta eliminar una Facturas no existente"
+     *      }
+     *  )
+     *
      */
     public function deleteAction(Request $request, Facturas $factura)
     {
-        $form = $this->createDeleteForm($factura);
-        $form->handleRequest($request);
+        $this->getHandler()->delete($factura);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($factura);
-            $em->flush();
-        }
-
-        return $this->redirectToRoute('facturas_index');
+        return $this->routeRedirectView('get_facturas', array(), Response::HTTP_NO_CONTENT);
     }
 
+       
     /**
-     * Creates a form to delete a Facturas entity.
+     * Returns the required handler for this controller
      *
-     * @param Facturas $factura The Facturas entity
-     *
-     * @return \Symfony\Component\Form\Form The form
+     * @return \AppBundle\Form\FormHandler
      */
-    private function createDeleteForm(Facturas $factura)
+    private function getHandler()
     {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('delete_factura', array('factura' => $factura->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
+        return $this->get('paypaybundle.form.handler.facturas');
     }
 }

@@ -7,6 +7,12 @@ services:
        arguments: ["@doctrine.orm.entity_manager","@form.factory","@paypaybundle.form.ingresostype"]
     paypaybundle.form.ingresostype:
         class: Multiservices\PayPayBundle\Form\IngresosType
+    paypaybundle.form.handler.facturas:
+       class: AppBundle\Form\Handler\FormHandler
+       arguments: ["@doctrine.orm.entity_manager","@form.factory","@paypaybundle.form.facturastype"]
+    paypaybundle.form.facturastype:
+        class: Multiservices\PayPayBundle\Form\FacturasType    
+        
     paypay.form.type.formasPagos:
         class: Multiservices\PayPayBundle\Form\Type\FormasPagosType
         arguments: ["@doctrine.orm.entity_manager"]

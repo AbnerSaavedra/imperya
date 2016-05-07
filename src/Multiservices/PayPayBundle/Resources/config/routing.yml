@@ -4,4 +4,5 @@ PayPayAnnotations:
    prefix:   /
 pay_pay_ingresos:
     resource: "@PayPayBundle/Resources/config/routing/ingresos.yml"
-    #prefix:   /ingresos
+pay_pay_facturas:
+    resource: "@PayPayBundle/Resources/config/routing/facturas.yml"        

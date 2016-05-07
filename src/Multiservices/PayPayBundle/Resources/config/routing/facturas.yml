@@ -10,8 +10,6 @@ facturas:
 facturas_api:
     type: rest
     resource: "@PayPayBundle/Controller/FacturasController.php"
-    options:
-        expose: true
     prefix: api 
 facturas_results:
     path:     /facturas/results

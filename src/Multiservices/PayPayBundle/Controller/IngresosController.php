@@ -3,11 +3,11 @@
 namespace Multiservices\PayPayBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
-
-use Symfony\Component\HttpFoundation\JsonResponse;
+use FOS\RestBundle\Routing\ClassResourceInterface;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
 use Multiservices\PayPayBundle\Entity\Ingresos;
 use Multiservices\PayPayBundle\Form\IngresosType;
@@ -17,162 +17,219 @@ use Multiservices\PayPayBundle\Form\IngresosType;
  *
 * @Rest\RouteResource("Ingreso")
  */
-class IngresosController extends FOSRestController
+class IngresosController extends FOSRestController implements ClassResourceInterface
 {
     /**
      * Lists all Ingresos entities.
      *
-     */
-    public function indexAction()
-    {
-        //$em = $this->getDoctrine()->getManager();
-
-        //$ingresos = $em->getRepository('PayPayBundle:Ingresos')->findAll();
-
-        $ingresos_datatable = $this->get("paypaybundle_datatable.ingresos");
-        $ingresos_datatable->buildDatatable();
-
-        return $this->render('PayPayBundle:Ingresos:index.html.twig', array(
-            //'ingresos' => $ingresos,
-            'datatable'=>$ingresos_datatable
-        ));
-    }
-
-    /**
-     * Get results from Ingresos entity.
+     * @ApiDoc(
+     *   resource = true,
+     *   section="Ingresos",
+     *   statusCodes = {
+     *     200 = "Returned when successful",
+     *     404 = "Returned when not found"
+     *   }
+     * )
+     *
+     * @Rest\View()
      *
      */
-    public function resultsAction(Request $request)
+    public function cgetAction()
     {
+        $em = $this->getDoctrine()->getManager();
 
-        $datatable = $this->get('paypaybundle_datatable.ingresos');
-        $datatable->buildDatatable();
-        $query = $this->get('sg_datatables.query')->getQueryFrom($datatable);
-        
-        $function = function($qb)
-        {
-        // $qb->addSelect('partial estudiante.{id,estudiante}');
-        //$qb->join ('ingresos.facturas','facturas');
-         //$qb->join ('facturas.pension','facturas_pension');
-        //$qb->innerJoin ('pension_estudiante.estudiante','estudiante');
-        };
+        $ingresos = $em->getRepository('PayPayBundle:Ingresos')->findAll();
 
-    $query->addWhereResult($function);
+        //$ingresos_datatable = $this->get("paypaybundle_datatable.ingresos");
+        //$ingresos_datatable->buildDatatable();
 
-        return $query->getResponse();
+        $view = $this->view($ingresos)
+            ->setTemplate('ingresos/index.html.twig')
+            ->setTemplateData([
+                            'ingresos' => $ingresos
+                             ]);
+        return $ingresos;
     }
-
+    
     /**
-     * Creates a new Ingresos entity.
+     * Crea una nueva Ingresos entidad.
      *
-     * @Rest\Post() 
-     * @Rest\Get("/ingresos/new", name="new_ingreso") 
+     * @ApiDoc(
+     *   resource = true,
+     *   section="Ingresos",
+     *   input = "Multiservices\PayPayBundle\Form\IngresosType",
+     *   output = "Multiservices\PayPayBundle\Entity\Ingresos",
+     *    statusCodes = {
+     *      201 = "Retorna cuando se crea un nuevo Ingresos",
+     *      400 = "Returna cuando el formulario contiene errores" 
+     *   }
+     * )
+     * @Rest\View(
+     *   template = "ingresos/new.html.twig",
+     *   statusCode = Response::HTTP_BAD_REQUEST
+     * )
+     *
+     * @param Request $request the request object
+     *
+     * @return FormTypeInterface[]|View
      */
-    public function newAction(Request $request)
+    public function postAction(Request $request)
     {
-        $ingreso = new Ingresos();
-        $form = $this->createForm('Multiservices\PayPayBundle\Form\IngresosType', $ingreso);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            
-            $ingreso->registrarPagoEnFacturas();
-            $user = $this->getUser();
-            $ingreso->setCollectedby($user);
-            
-            $em->persist($ingreso);
-            $em->flush();
-
-            //return $this->redirectToRoute('ingresos', array('page' => $ingresos->getId()));
-                $response_redir=new JsonResponse();
-                $response_redir->setData(array('id'=>$ingreso->getId()));
-                $response_redir->setStatusCode(201);
-                return $response_redir;
+        try {
+            $ingreso = $this->getHandler()->post(
+                new Ingresos(),
+                $request->request->all()
+            );
+            $routeOptions = array(
+                'ingreso'        => $ingreso->getId(),
+                '_format'    => $request->get('_format'),
+            );
+            return $this->routeRedirectView(
+                'get_ingreso',
+                $routeOptions,
+                Response::HTTP_CREATED
+            );
+        } catch (InvalidFormException $e) {
+            return $e->getForm();
         }
-
-        return $this->render('PayPayBundle:Ingresos:new.html.twig', array(
-            'ingreso' => $ingreso,
-            'form' => $form->createView(),
-        ));
     }
 
     /**
      * Finds and displays a Ingresos entity.
      *
-     * @Rest\Get() 
+     * @ApiDoc(
+     *   resource = true,
+     *   output = "Multiservices\PayPayBundle\Entity\Ingresos",
+     *   section="Ingresos",
+     *    statusCodes = {
+     *      200 = "Retorna la entidad Ingresos",
+     *      404 = "Retorna cuando no se ecuentra objeto" 
+     *   }
+     * )
+     *
      */
-    public function showAction(Ingresos $ingreso)
+    public function getAction(Ingresos $ingreso)
     {
-        $deleteForm = $this->createDeleteForm($ingreso);
-
-        return $this->render('PayPayBundle:Ingresos:show.html.twig', array(
-            'ingreso' => $ingreso,
-            'delete_form' => $deleteForm->createView(),
-        ));
+        
+        $view = $this->view($ingreso, 200)
+            ->setTemplate('ingresos/show.html.twig')
+            ->setTemplateData(['ingreso'=>$ingreso]);
+        return $this->handleView($view);
     }
 
     /**
-     * Displays a form to edit an existing Ingresos entity.
+     * Replaces an existing Ingresos entity.
      *
-     * @Rest\Post() 
-     * @Rest\Get("/ingresos/{ingreso}/edit", name="edit_ingreso") 
+     * @ApiDoc(
+     *   resource = true,
+     *   input = "Multiservices\PayPayBundle\Form\IngresosType",
+     *   output = "Multiservices\PayPayBundle\Entity\Ingresos",
+     *   section="Ingresos",
+     *    statusCodes = {
+     *      201="Retorna cuando Ingresos ha sido creado exitosamente",
+     *      204="Retorna cuando un existente Ingresos ha sido actualizado exitosamente",
+     *      400="Retorna cuando la data del formulario es invalida"
+     *   }
+     * )
+     * @param Request $request
+     * @param integer $id
+     * @return array|\FOS\RestBundle\View\View|null
      */
-    public function editAction(Request $request, Ingresos $ingreso)
+    public function putAction(Request $request, $id)
     {
-        $deleteForm = $this->createDeleteForm($ingreso);
-        $montoAnterior=$ingreso->getMonto();
-        $editForm = $this->createForm('Multiservices\PayPayBundle\Form\IngresosType', $ingreso);
-        $editForm->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
+        $ingreso = $em->getRepository('PayPayBundle:Ingresos')->find($id);
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $ingreso->modificarPagoEnFacturas($montoAnterior);
-            $em->persist($ingreso);
-            $em->flush();
-
-            return $this->redirectToRoute('edit_ingreso', array('ingreso' => $ingreso->getId()));
+        try {
+            if ($ingreso === null) {
+                $statusCode = Response::HTTP_CREATED;
+                $ingreso = $this->getHandler()->post(
+                    new Ingresos(),
+                    $request->request->all()
+                );
+            } else {
+                $statusCode = Response::HTTP_NO_CONTENT;
+                $ingreso = $this->getHandler()->put(
+                    $ingreso,
+                    $request->request->all()
+                );
+            }
+            $routeOptions = array(
+                'ingreso'        => $ingreso->getId(),
+                '_format'   => $request->get('_format')
+            );
+            return $this->routeRedirectView('get_ingreso', $routeOptions, $statusCode);
+        } catch (InvalidFormException $e) {
+            return $e->getForm();
         }
+    }
 
-        return $this->render('PayPayBundle:Ingresos:edit.html.twig', array(
-            'ingreso' => $ingreso,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
+    /**
+     * Updates an existing Ingresos entity.
+     *
+     * @ApiDoc(
+     *   resource = true,
+     *   input = "Multiservices\PayPayBundle\Form\IngresosType",
+     *   output = "Multiservices\PayPayBundle\Entity\Ingresos",
+     *   section="Ingresos",
+     *    statusCodes = {
+     *      204="Returned when an existing Ingresos has been successfully updated",
+     *      400="Returned when the posted data is invalid",
+     *      404="Returned when trying to update a non existent Ingresos"
+     *   }
+     * )
+     * @param Request $request
+     * @param Ingresos $ingreso
+     * @return array|\FOS\RestBundle\View\View|null
+     */
+    public function patchAction(Request $request, Ingresos $ingreso)
+    {
+        
+
+        try {
+            $ingreso = $this->getHandler()->patch(
+                $ingreso,
+                $request->request->all()
+            );
+            $routeOptions = array(
+                'ingreso'        => $ingreso->getId(),
+                '_format'   => $request->get('_format')
+            );
+            return $this->routeRedirectView('get_ingreso', $routeOptions, Response::HTTP_NO_CONTENT);
+        } catch (InvalidFormException $e) {
+            return $e->getForm();
+        }
     }
 
     /**
      * Deletes a Ingresos entity.
      *
+     * @ApiDoc(
+     *      resource = true,
+     *      section="Ingresos",
+     *      statusCodes = {
+     *         204="Retorna cuando Ingresos existente  ha sido eliminado completamente",
+     *         404="Retorna cuando intenta eliminar una Ingresos no existente"
+     *      }
+     *  )
+     *
      */
     public function deleteAction(Request $request, Ingresos $ingreso)
     {
-        $form = $this->createDeleteForm($ingreso);
-        $form->handleRequest($request);
+        $this->getHandler()->delete($ingreso);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $ingreso->revertirPagoEnFacturas();
-            $em->remove($ingreso);
-            $em->flush();
-        }
-
-        return $this->redirectToRoute('ingresos');
+        return $this->routeRedirectView('get_ingresos', array(), Response::HTTP_NO_CONTENT);
     }
 
+       
     /**
-     * Creates a form to delete a Ingresos entity.
+     * Returns the required handler for this controller
      *
-     * @param Ingresos $ingreso The Ingresos entity
-     *
-     * @return \Symfony\Component\Form\Form The form
+     * @return \AppBundle\Form\FormHandler
      */
-    private function createDeleteForm(Ingresos $ingreso)
+    private function getHandler()
     {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('delete_ingreso', array('ingreso' => $ingreso->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
+        return $this->get('paypaybundle.form.handler.ingresos');
     }
 }

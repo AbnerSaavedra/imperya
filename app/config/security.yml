@@ -29,8 +29,8 @@ security:
             stateless: true
             form_login:
                 check_path:               /login
-                username_parameter:       username
-                password_parameter:       password
+                username_parameter:       _username
+                password_parameter:       _password
                 success_handler:          lexik_jwt_authentication.handler.authentication_success
                 failure_handler:          lexik_jwt_authentication.handler.authentication_failure
                 require_previous_session: false        

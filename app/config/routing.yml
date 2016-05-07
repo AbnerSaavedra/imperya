@@ -8,14 +8,14 @@ app:
 #rutas del back o api         
 usuarios_api:
     type: rest
-    resource: "@AppBundle/Controller/UsuariosController.php"
+    resource: "@AppBundle/Controller/UsuarioController.php"
     #prefix: api     
 #notify:
 #    resource: "@NotifyBundle/Resources/config/routing.yml"
 #    prefix:   /
-#pay_pay:
-#    resource: "@PayPayBundle/Resources/config/routing.yml"
-#    prefix:   /    
+pay_pay:
+    resource: "@PayPayBundle/Resources/config/routing.yml"
+    prefix:   /    
 fos_js_routing:
     resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"  
 fos_user:

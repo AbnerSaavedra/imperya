@@ -84,6 +84,7 @@ fos_user:
 #        annotations: false
         
 fos_rest:
+    #disable_csrf_role: ROLE_API
     param_fetcher_listener: true
     format_listener:  true
     body_listener: true
@@ -94,11 +95,15 @@ fos_rest:
         #view_response_listener: 'force'
         exception_wrapper_handler:  null
         formats:
+            html: true
             jsonp: true
             json: true
             xml: false
             rss: false
+        templating_formats:
+            html: true    
         mime_types:
+            html: ['text/html']
             json: ['application/json; charset=UTF-8', 'application/json', 'application/x-json']
             jpg: 'image/jpeg'
             png: 'image/png'
@@ -109,10 +114,9 @@ fos_rest:
     routing_loader:
         default_format:  json
         include_format:  false
-    #format_listener: true    
     format_listener:
         rules:
-            - { path: ^/,prefer_extension: true,fallback_format: ~, priorities: [ json, jsonp]}
+            - { path: ^/,prefer_extension: true,fallback_format: ~, priorities: ['json','jsonp']}
     exception:
         enabled: true
 fos_js_routing:
@@ -130,12 +134,17 @@ nelmio_cors:
 # Nelmio API Doc
 nelmio_api_doc:
     sandbox:
+        authentication:
+            delivery: header
+            name:     Authorization
         accept_type:        "application/json"
         body_format:
-            formats:        [ "json" ]
+            formats:        [ "json","html" ]
             default_format: "json"
         request_format:
+            method: accept_header
             formats:
+                html:       "text/html"    
                 json:       "application/json"    
 
 # Lexik JWT Auth

@@ -873,4 +873,8 @@ class Contacto  ///Anteriormente se llamaba Contacto renombrada asi para compati
     {
         return $this->pagos;
     }
+    
+    public function __toString() {
+        return $this->nombre;
+    }
 }

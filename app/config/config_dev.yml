@@ -38,4 +38,4 @@ csa_guzzle:
     clients:
         local_test_api:
             config:
-                base_uri: http://imperya/app_dev.php/
+                base_uri: '%behat_host%/app_dev.php/'

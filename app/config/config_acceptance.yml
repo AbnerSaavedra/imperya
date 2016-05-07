@@ -14,5 +14,5 @@ csa_guzzle:
     clients:
         local_test_api:
             config:
-                base_uri: http://imperya/app_acceptance.php/  
+                base_uri: '%behat_host%/app_acceptance.php/'  
 

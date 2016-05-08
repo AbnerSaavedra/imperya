@@ -26,7 +26,7 @@ class RestApiContext implements Context
     private $authorization;
 
     /**
-     * @var ClientInterface
+     * @var GuzzleHttp\ClientInterface
      */
     protected $client;
 
@@ -71,9 +71,9 @@ class RestApiContext implements Context
      * @param string $username
      * @param string $password
      *
-     * @Given /^I am authenticating as "([^"]*)" with "([^"]*)" password$/
+     * @Given /^Estoy autenticadome como "([^"]*)" with "([^"]*)" password$/
      */
-    public function iAmAuthenticatingAs($username, $password)
+    public function EstoyAutenticandomeComo($username, $password)
     {
         $this->removeHeader('Authorization');
         $this->authorization = base64_encode($username . ':' . $password);
@@ -98,7 +98,6 @@ class RestApiContext implements Context
         ]);
 
         \PHPUnit_Framework_Assert::assertEquals(200, $response->getStatusCode());
-
         $responseBody = json_decode($response->getBody(), true);
         $this->addHeader('Authorization', 'Bearer ' . $responseBody['token']);
     }
@@ -108,7 +107,9 @@ class RestApiContext implements Context
      */
     public function cuandoConsumaElPuntoFinalYoUsareDe($header, $value)
     {
-        $this->client->setDefaultOption($header, $value);
+        
+        $this->addHeader($header,$value);
+        
     }
 
     /**

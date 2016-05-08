@@ -21,7 +21,11 @@ Característica: Manejar Ingresos data via the RESTful API
             | 2  | descripcion2    | 24.58  | johnpass   | 1            | 
             | 3  | descripcion3    | 210    | johnpass   | 1            |  
         Y me logueare con el siguiente username: "arxis", y contraseña: "arxisla"
-        Y cuando consuma el punto final yo usare "Content-type" de "application/json"
+        Y cuando consuma el punto final yo usare "Content-Type" de "application/json"
+        Y cuando consuma el punto final yo usare "Accept" de "application/json"
+        Y cuando consuma el punto final yo usare "User-Agent" de "Mozilla/4.0"
+        
+        
     @ingreso
     Escenario: Usuario OBTIENE una Collection de Ingresos objects
         Cuando Yo envio una solicitud "GET" a "/api/ingresos"

@@ -6,6 +6,9 @@ if [ "$composer" == "composer" ]; then
                echo "Se Actualizara Composer"
                php composer.phar self-update
                php composer.phar update
+               mkdir -p app/var/jwt
+               openssl genrsa -out app/var/jwt/private.pem -aes256 4096
+               openssl rsa -pubout -in app/var/jwt/private.pem -out app/var/jwt/public.pem
 fi
 php bin/console doctrine:schema:update --dump-sql --force
 php bin/console doctrine:fixtures:load --append

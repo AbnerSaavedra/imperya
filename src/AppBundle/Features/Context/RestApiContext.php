@@ -94,6 +94,9 @@ class RestApiContext implements Context
             'json' => [
                 '_username' => $username,
                 '_password' => $password,
+            ],
+            'headers' => [
+                'User-Agent' => 'Mozilla/4.0'
             ]
         ]);
 

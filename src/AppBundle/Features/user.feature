@@ -14,6 +14,8 @@ Característica: Manejar Users data via the RESTful API
             | 2  | john     | john@test.org      | johnpass |
         Y me logueare con el siguiente username: "arxis", y contraseña: "arxisla"
         Y cuando consuma el punto final yo usare "Content-Type" de "application/json"
+        Y cuando consuma el punto final yo usare "Accept" de "application/json"
+        Y cuando consuma el punto final yo usare "User-Agent" de "Mozilla/4.0"
     Escenario: User cannot GET a Collection of User objects
         Cuando Yo envio una solicitud "GET" a "/usuarios"
         Entonces el codigo de respuesta debe de ser 405     

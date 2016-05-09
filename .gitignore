@@ -1,4 +1,6 @@
 /app/config/parameters.yml
+!/app/var/jwt
+/app/var/jwt/*
 /build/
 /bower_components
 /composer.phar

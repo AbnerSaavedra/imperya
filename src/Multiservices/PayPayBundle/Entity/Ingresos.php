@@ -45,8 +45,9 @@ class Ingresos
     
     /**
      * @var \DateTime
-     *
+     * 
      * @ORM\Column(name="fecha", type="datetime", nullable=false)
+     * @Assert\Date()
      */
     
     private $fecha;

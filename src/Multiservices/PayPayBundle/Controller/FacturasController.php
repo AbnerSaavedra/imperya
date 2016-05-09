@@ -8,7 +8,7 @@ use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Routing\ClassResourceInterface;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
-
+use AppBundle\Exception\InvalidFormException;
 use Multiservices\PayPayBundle\Entity\Facturas;
 use Multiservices\PayPayBundle\Form\FacturasType;
 
@@ -57,7 +57,10 @@ class FacturasController extends FOSRestController implements ClassResourceInter
      * @ApiDoc(
      *   resource = true,
      *   section="Facturas",
-     *   input = "Multiservices\PayPayBundle\Form\FacturasType",
+     *   input = {
+     *              "class"= "Multiservices\PayPayBundle\Form\FacturasType",
+     *              "name"= ""
+     *            },
      *   output = "Multiservices\PayPayBundle\Entity\Facturas",
      *    statusCodes = {
      *      201 = "Retorna cuando se crea un nuevo Facturas",
@@ -123,7 +126,10 @@ class FacturasController extends FOSRestController implements ClassResourceInter
      *
      * @ApiDoc(
      *   resource = true,
-     *   input = "Multiservices\PayPayBundle\Form\FacturasType",
+     *   input = {
+     *              "class"= "Multiservices\PayPayBundle\Form\FacturasType",
+     *              "name"= ""
+     *            },
      *   output = "Multiservices\PayPayBundle\Entity\Facturas",
      *   section="Facturas",
      *    statusCodes = {
@@ -132,9 +138,10 @@ class FacturasController extends FOSRestController implements ClassResourceInter
      *      400="Retorna cuando la data del formulario es invalida"
      *   }
      * )
+     * @Rest\View()
      * @param Request $request
      * @param integer $id
-     * @return array|\FOS\RestBundle\View\View|null
+     * @return FormTypeInterface[]|\FOS\RestBundle\View\View|null
      */
     public function putAction(Request $request, $id)
     {
@@ -170,7 +177,10 @@ class FacturasController extends FOSRestController implements ClassResourceInter
      *
      * @ApiDoc(
      *   resource = true,
-     *   input = "Multiservices\PayPayBundle\Form\FacturasType",
+     *   input = {
+     *              "class"= "Multiservices\PayPayBundle\Form\FacturasType",
+     *              "name"= ""
+     *            },
      *   output = "Multiservices\PayPayBundle\Entity\Facturas",
      *   section="Facturas",
      *    statusCodes = {
@@ -179,9 +189,10 @@ class FacturasController extends FOSRestController implements ClassResourceInter
      *      404="Returned when trying to update a non existent Facturas"
      *   }
      * )
+     * @Rest\View()
      * @param Request $request
      * @param Facturas $factura
-     * @return array|\FOS\RestBundle\View\View|null
+     * @return FormTypeInterface[]|\FOS\RestBundle\View\View|null
      */
     public function patchAction(Request $request, Facturas $factura)
     {

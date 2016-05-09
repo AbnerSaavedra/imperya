@@ -49,6 +49,9 @@ class IngresosContext implements Context, SnippetAcceptingContext
             $ingreso->setReferencia($val['referencia']);
             $fp=$this->em->getRepository('PayPayBundle:FormasPagos')->find($val['formapago']);
             $ingreso->setFormaPago($fp);
+            $cli=$this->em->getRepository("ArxisContableBundle:Contacto")->find($val['cliente']);
+            $ingreso->setCliente($cli);
+            
             $this->em->persist($ingreso);
             $this->em->flush();
             $qb = $this->em->createQueryBuilder();

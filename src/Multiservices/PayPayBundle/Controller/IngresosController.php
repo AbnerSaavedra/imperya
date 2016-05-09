@@ -8,7 +8,7 @@ use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Routing\ClassResourceInterface;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
-
+use AppBundle\Exception\InvalidFormException;
 use Multiservices\PayPayBundle\Entity\Ingresos;
 use Multiservices\PayPayBundle\Form\IngresosType;
 
@@ -57,7 +57,10 @@ class IngresosController extends FOSRestController implements ClassResourceInter
      * @ApiDoc(
      *   resource = true,
      *   section="Ingresos",
-     *   input = "Multiservices\PayPayBundle\Form\IngresosType",
+     *   input = {
+     *              "class"= "Multiservices\PayPayBundle\Form\IngresosType",
+     *              "name"= ""
+     *            },
      *   output = "Multiservices\PayPayBundle\Entity\Ingresos",
      *    statusCodes = {
      *      201 = "Retorna cuando se crea un nuevo Ingresos",
@@ -123,7 +126,10 @@ class IngresosController extends FOSRestController implements ClassResourceInter
      *
      * @ApiDoc(
      *   resource = true,
-     *   input = "Multiservices\PayPayBundle\Form\IngresosType",
+     *   input = {
+     *              "class"= "Multiservices\PayPayBundle\Form\IngresosType",
+     *              "name"= ""
+     *            },
      *   output = "Multiservices\PayPayBundle\Entity\Ingresos",
      *   section="Ingresos",
      *    statusCodes = {
@@ -132,9 +138,10 @@ class IngresosController extends FOSRestController implements ClassResourceInter
      *      400="Retorna cuando la data del formulario es invalida"
      *   }
      * )
+     * @Rest\View()
      * @param Request $request
      * @param integer $id
-     * @return array|\FOS\RestBundle\View\View|null
+     * @return FormTypeInterface[]|\FOS\RestBundle\View\View|null
      */
     public function putAction(Request $request, $id)
     {
@@ -170,7 +177,10 @@ class IngresosController extends FOSRestController implements ClassResourceInter
      *
      * @ApiDoc(
      *   resource = true,
-     *   input = "Multiservices\PayPayBundle\Form\IngresosType",
+     *   input = {
+     *              "class"= "Multiservices\PayPayBundle\Form\IngresosType",
+     *              "name"= ""
+     *            },
      *   output = "Multiservices\PayPayBundle\Entity\Ingresos",
      *   section="Ingresos",
      *    statusCodes = {
@@ -179,9 +189,10 @@ class IngresosController extends FOSRestController implements ClassResourceInter
      *      404="Returned when trying to update a non existent Ingresos"
      *   }
      * )
+     * @Rest\View()
      * @param Request $request
      * @param Ingresos $ingreso
-     * @return array|\FOS\RestBundle\View\View|null
+     * @return FormTypeInterface[]|\FOS\RestBundle\View\View|null
      */
     public function patchAction(Request $request, Ingresos $ingreso)
     {

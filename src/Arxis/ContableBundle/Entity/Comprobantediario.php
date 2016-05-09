@@ -126,5 +126,326 @@ class Comprobantediario
     private $tipocomprobantediarioid;
 
 
-}
 
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set fecha
+     *
+     * @param \DateTime $fecha
+     *
+     * @return Comprobantediario
+     */
+    public function setFecha($fecha)
+    {
+        $this->fecha = $fecha;
+
+        return $this;
+    }
+
+    /**
+     * Get fecha
+     *
+     * @return \DateTime
+     */
+    public function getFecha()
+    {
+        return $this->fecha;
+    }
+
+    /**
+     * Set fechaemision
+     *
+     * @param \DateTime $fechaemision
+     *
+     * @return Comprobantediario
+     */
+    public function setFechaemision($fechaemision)
+    {
+        $this->fechaemision = $fechaemision;
+
+        return $this;
+    }
+
+    /**
+     * Get fechaemision
+     *
+     * @return \DateTime
+     */
+    public function getFechaemision()
+    {
+        return $this->fechaemision;
+    }
+
+    /**
+     * Set serie
+     *
+     * @param string $serie
+     *
+     * @return Comprobantediario
+     */
+    public function setSerie($serie)
+    {
+        $this->serie = $serie;
+
+        return $this;
+    }
+
+    /**
+     * Get serie
+     *
+     * @return string
+     */
+    public function getSerie()
+    {
+        return $this->serie;
+    }
+
+    /**
+     * Set numero
+     *
+     * @param integer $numero
+     *
+     * @return Comprobantediario
+     */
+    public function setNumero($numero)
+    {
+        $this->numero = $numero;
+
+        return $this;
+    }
+
+    /**
+     * Get numero
+     *
+     * @return integer
+     */
+    public function getNumero()
+    {
+        return $this->numero;
+    }
+
+    /**
+     * Set referencia
+     *
+     * @param string $referencia
+     *
+     * @return Comprobantediario
+     */
+    public function setReferencia($referencia)
+    {
+        $this->referencia = $referencia;
+
+        return $this;
+    }
+
+    /**
+     * Get referencia
+     *
+     * @return string
+     */
+    public function getReferencia()
+    {
+        return $this->referencia;
+    }
+
+    /**
+     * Set notas
+     *
+     * @param string $notas
+     *
+     * @return Comprobantediario
+     */
+    public function setNotas($notas)
+    {
+        $this->notas = $notas;
+
+        return $this;
+    }
+
+    /**
+     * Get notas
+     *
+     * @return string
+     */
+    public function getNotas()
+    {
+        return $this->notas;
+    }
+
+    /**
+     * Set debe
+     *
+     * @param string $debe
+     *
+     * @return Comprobantediario
+     */
+    public function setDebe($debe)
+    {
+        $this->debe = $debe;
+
+        return $this;
+    }
+
+    /**
+     * Get debe
+     *
+     * @return string
+     */
+    public function getDebe()
+    {
+        return $this->debe;
+    }
+
+    /**
+     * Set haber
+     *
+     * @param string $haber
+     *
+     * @return Comprobantediario
+     */
+    public function setHaber($haber)
+    {
+        $this->haber = $haber;
+
+        return $this;
+    }
+
+    /**
+     * Get haber
+     *
+     * @return string
+     */
+    public function getHaber()
+    {
+        return $this->haber;
+    }
+
+    /**
+     * Set concepto
+     *
+     * @param string $concepto
+     *
+     * @return Comprobantediario
+     */
+    public function setConcepto($concepto)
+    {
+        $this->concepto = $concepto;
+
+        return $this;
+    }
+
+    /**
+     * Get concepto
+     *
+     * @return string
+     */
+    public function getConcepto()
+    {
+        return $this->concepto;
+    }
+
+    /**
+     * Set documentoid
+     *
+     * @param \Arxis\ContableBundle\Entity\Documento $documentoid
+     *
+     * @return Comprobantediario
+     */
+    public function setDocumentoid(\Arxis\ContableBundle\Entity\Documento $documentoid)
+    {
+        $this->documentoid = $documentoid;
+
+        return $this;
+    }
+
+    /**
+     * Get documentoid
+     *
+     * @return \Arxis\ContableBundle\Entity\Documento
+     */
+    public function getDocumentoid()
+    {
+        return $this->documentoid;
+    }
+
+    /**
+     * Set establecimientoid
+     *
+     * @param \Arxis\ContableBundle\Entity\Establecimiento $establecimientoid
+     *
+     * @return Comprobantediario
+     */
+    public function setEstablecimientoid(\Arxis\ContableBundle\Entity\Establecimiento $establecimientoid)
+    {
+        $this->establecimientoid = $establecimientoid;
+
+        return $this;
+    }
+
+    /**
+     * Get establecimientoid
+     *
+     * @return \Arxis\ContableBundle\Entity\Establecimiento
+     */
+    public function getEstablecimientoid()
+    {
+        return $this->establecimientoid;
+    }
+
+    /**
+     * Set estadodocumentoid
+     *
+     * @param \Arxis\ContableBundle\Entity\Estadodocumento $estadodocumentoid
+     *
+     * @return Comprobantediario
+     */
+    public function setEstadodocumentoid(\Arxis\ContableBundle\Entity\Estadodocumento $estadodocumentoid)
+    {
+        $this->estadodocumentoid = $estadodocumentoid;
+
+        return $this;
+    }
+
+    /**
+     * Get estadodocumentoid
+     *
+     * @return \Arxis\ContableBundle\Entity\Estadodocumento
+     */
+    public function getEstadodocumentoid()
+    {
+        return $this->estadodocumentoid;
+    }
+
+    /**
+     * Set tipocomprobantediarioid
+     *
+     * @param \Arxis\ContableBundle\Entity\Tipocomprobantediario $tipocomprobantediarioid
+     *
+     * @return Comprobantediario
+     */
+    public function setTipocomprobantediarioid(\Arxis\ContableBundle\Entity\Tipocomprobantediario $tipocomprobantediarioid)
+    {
+        $this->tipocomprobantediarioid = $tipocomprobantediarioid;
+
+        return $this;
+    }
+
+    /**
+     * Get tipocomprobantediarioid
+     *
+     * @return \Arxis\ContableBundle\Entity\Tipocomprobantediario
+     */
+    public function getTipocomprobantediarioid()
+    {
+        return $this->tipocomprobantediarioid;
+    }
+}

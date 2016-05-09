@@ -30,7 +30,8 @@ class IngresosType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('fecha', DateTimeType::class)
+            ->add('fecha', DateTimeType::class, ["format"=>"Y-m-d H:i",
+                                                    "description"=>"Fecha"])
             ->add('cliente') //,  ClienteType::class)
             ->add('monto',NumberType::class,['attr'=>
                                                     ['step'=>'0.01']]
@@ -45,7 +46,7 @@ class IngresosType extends AbstractType
                 ;
                 
                 
-           $formModifier = function (FormInterface $form, Cliente $cliente = null, PersistentCollection $facturas=null) {
+        $formModifier = function (FormInterface $form, Cliente $cliente = null, PersistentCollection $facturas=null) {
                 
                $facturas = null === $facturas ? array() : $facturas->toArray();
                 
@@ -68,8 +69,10 @@ class IngresosType extends AbstractType
             function (FormEvent $event) use ($formModifier) {
                 // this would be your entity, i.e. Ingresos
                 $data = $event->getData();
-                //esta data debe ser descomentada
-                //$formModifier($event->getForm(), $data->getCliente(),$data->getFacturas());
+                if (isset($data))
+                {
+                    $formModifier($event->getForm(), $data->getCliente(),$data->getFacturas());
+                }
             }
         );
 
@@ -84,7 +87,7 @@ class IngresosType extends AbstractType
                 // the parent to the callback functions!
                 $formModifier($event->getForm()->getParent(), $cliente,$facturas);
             }
-        );    
+        );   
             
        
     }
@@ -96,7 +99,7 @@ class IngresosType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'Multiservices\PayPayBundle\Entity\Ingresos',
-            'attr' => array('ng-submit'=>"processForm(\$event,'ingresos')")
+            //'attr' => array('ng-submit'=>"processForm(\$event,'ingresos')")
         ));
     }
 }

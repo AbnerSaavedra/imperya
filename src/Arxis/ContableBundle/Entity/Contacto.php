@@ -26,7 +26,7 @@ class Contacto  ///Anteriormente se llamaba Contacto renombrada asi para compati
     /**
      * @var integer
      *
-     * @ORM\Column(name="PaisId", type="integer", nullable=false)
+     * @ORM\Column(name="PaisId", type="integer", nullable=true)
      */
     private $paisid;
 

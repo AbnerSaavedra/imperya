@@ -21,12 +21,6 @@ use Multiservices\PayPayBundle\Entity\Ingresos;
 class IngresosListener 
 {
     /**
-     * @var string
-     */
-    protected $locale;
- 
- 
-    /**
      * @var TokenStorage
      */
     protected $tokenStorage;

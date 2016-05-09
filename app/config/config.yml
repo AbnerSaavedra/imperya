@@ -133,6 +133,7 @@ nelmio_cors:
 
 # Nelmio API Doc
 nelmio_api_doc:
+    name: Imperya API
     sandbox:
         authentication:
             delivery: header

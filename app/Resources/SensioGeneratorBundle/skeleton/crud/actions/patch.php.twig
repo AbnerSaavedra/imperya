@@ -11,7 +11,10 @@
 {% endif %}
      * @ApiDoc(
      *   resource = true,
-     *   input = "{{ namespace }}\Form\{{ entity }}Type",
+     *   input = {
+     *              "class"= "{{ namespace }}\Form\{{ entity }}Type",
+     *              "name"= ""
+     *            },
      *   output = "{{ namespace }}\Entity\{{ entity_class }}",
      *   section="{{ entity }}",
      *    statusCodes = {
@@ -23,7 +26,7 @@
      * @Rest\View()
      * @param Request $request
      * @param {{ entity_class }} ${{ entity_singularized }}
-     * @return array|\FOS\RestBundle\View\View|null
+     * @return FormTypeInterface[]|\FOS\RestBundle\View\View|null
 {% endblock phpdoc_method_annotations %}
      */
 {% block method_definition %}

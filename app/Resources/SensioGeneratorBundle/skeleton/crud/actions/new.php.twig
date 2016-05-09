@@ -12,7 +12,10 @@
      * @ApiDoc(
      *   resource = true,
      *   section="{{ entity }}",
-     *   input = "{{ namespace }}\Form\{{ entity }}Type",
+     *   input = {
+     *              "class"= "{{ namespace }}\Form\{{ entity }}Type",
+     *              "name"= ""
+     *            },
      *   output = "{{ namespace }}\Entity\{{ entity_class }}",
      *    statusCodes = {
      *      201 = "Retorna cuando se crea un nuevo {{ entity }}",

@@ -30,8 +30,7 @@ class IngresosType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('fecha', DateTimeType::class, ["format"=>"Y-m-d H:i",
-                                                    "description"=>"Fecha"])
+            ->add('fecha', DateTimeType::class, ["description"=>"Fecha de Ingreso"])
             ->add('cliente') //,  ClienteType::class)
             ->add('monto',NumberType::class,['attr'=>
                                                     ['step'=>'0.01']]

@@ -6,11 +6,15 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Fresh\DoctrineEnumBundle\Validator\Constraints as DoctrineAssert;
 use Multiservices\PayPayBundle\DBAL\Types\EstadoFacturaType;
+use JMS\Serializer\Annotation as Serializer;
+
 /**
  * Ingresos
  *
  * @ORM\Table(name="ingresos", indexes={@ORM\Index(name="cliente_id", columns={"cliente_id"}), @ORM\Index(name="collectedby", columns={"collectedby"})})
  * @ORM\Entity(repositoryClass="Multiservices\PayPayBundle\Entity\IngresosRepository")
+ * @ORM\EntityListeners({"Multiservices\PayPayBundle\EventListener\IngresosListener"})
+ * ORM\HasLifecycleCallbacks()
  */
 class Ingresos
 {
@@ -47,9 +51,8 @@ class Ingresos
      * @var \DateTime
      * 
      * @ORM\Column(name="fecha", type="datetime", nullable=false)
-     * @Assert\Date()
+     * @Assert\DateTime()
      */
-    
     private $fecha;
     
     /**

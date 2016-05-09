@@ -5,6 +5,7 @@ namespace Multiservices\PayPayBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class ProductosType extends AbstractType
 {
@@ -24,8 +25,8 @@ class ProductosType extends AbstractType
             ->add('avisoMinimo')
             ->add('tipo')
             ->add('datosProducto')
-            ->add('fechaAlta', 'date')
-            ->add('codembalaje')
+            ->add('fechaAlta', DateType::class)
+           // ->add('codembalaje')
             ->add('unidadesCaja')
             ->add('precioTicket')
             ->add('modificarTicket')
@@ -40,9 +41,9 @@ class ProductosType extends AbstractType
             ->add('borrado')
             ->add('codubicacion')
             ->add('codproveedor1')
-            ->add('codproveedor2')
+           // ->add('codproveedor2')
             ->add('codfamilia')
-            ->add('atributos')
+           // ->add('atributos')
         ;
     }
     

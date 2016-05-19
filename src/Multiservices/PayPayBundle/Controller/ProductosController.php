@@ -25,6 +25,10 @@ class ProductosController extends FOSRestController implements ClassResourceInte
      * @ApiDoc(
      *   resource = true,
      *   section="Productos",
+     *   filters={
+     *      {"name"="search[value]", "dataType"="string","default"="", "required":true},
+     *      {"name"="draw", "dataType"="integer"}
+     *   },
      *   statusCodes = {
      *     200 = "Returned when successful",
      *     404 = "Returned when not found"
@@ -36,19 +40,23 @@ class ProductosController extends FOSRestController implements ClassResourceInte
      */
     public function cgetAction()
     {
-        $em = $this->getDoctrine()->getManager();
+        //$em = $this->getDoctrine()->getManager();
 
-        $productos = $em->getRepository('PayPayBundle:Productos')->findAll();
+        //$productos = $em->getRepository('PayPayBundle:Productos')->findAll();
 
-        //$productos_datatable = $this->get("paypaybundle_datatable.productos");
-        //$productos_datatable->buildDatatable();
+        $productos_datatable = $this->get("paypaybundle_datatable.productos");
+        $productos_datatable->buildDatatable();
+        
+    	$query = $this->get('sg_datatables.query')->getQueryFrom($productos_datatable);
 
-        $view = $this->view($productos)
+    	return $query->getResponse();
+
+        /*$view = $this->view($productos)
             ->setTemplate('productos/index.html.twig')
             ->setTemplateData([
                             'productos' => $productos
                              ]);
-        return $productos;
+        return $productos;*/
     }
     
     /**

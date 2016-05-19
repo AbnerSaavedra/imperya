@@ -1,0 +1,120 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Productos</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ producto.id }}</td>
+            </tr>
+            <tr>
+                <th>Referencia</th>
+                <td>{{ producto.referencia }}</td>
+            </tr>
+            <tr>
+                <th>Descripcion</th>
+                <td>{{ producto.descripcion }}</td>
+            </tr>
+            <tr>
+                <th>Impuesto</th>
+                <td>{{ producto.impuesto }}</td>
+            </tr>
+            <tr>
+                <th>Descripcioncorta</th>
+                <td>{{ producto.descripcionCorta }}</td>
+            </tr>
+            <tr>
+                <th>Stock</th>
+                <td>{{ producto.stock }}</td>
+            </tr>
+            <tr>
+                <th>Stockminimo</th>
+                <td>{{ producto.stockMinimo }}</td>
+            </tr>
+            <tr>
+                <th>Avisominimo</th>
+                <td>{{ producto.avisoMinimo }}</td>
+            </tr>
+            <tr>
+                <th>Tipo</th>
+                <td>{{ producto.tipo }}</td>
+            </tr>
+            <tr>
+                <th>Datosproducto</th>
+                <td>{{ producto.datosProducto }}</td>
+            </tr>
+            <tr>
+                <th>Fechaalta</th>
+                <td>{% if producto.fechaAlta %}{{ producto.fechaAlta|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Codembalaje</th>
+                <td>{{ producto.codembalaje }}</td>
+            </tr>
+            <tr>
+                <th>Unidadescaja</th>
+                <td>{{ producto.unidadesCaja }}</td>
+            </tr>
+            <tr>
+                <th>Precioticket</th>
+                <td>{{ producto.precioTicket }}</td>
+            </tr>
+            <tr>
+                <th>Modificarticket</th>
+                <td>{{ producto.modificarTicket }}</td>
+            </tr>
+            <tr>
+                <th>Observaciones</th>
+                <td>{{ producto.observaciones }}</td>
+            </tr>
+            <tr>
+                <th>Preciocompra</th>
+                <td>{{ producto.precioCompra }}</td>
+            </tr>
+            <tr>
+                <th>Precioalmacen</th>
+                <td>{{ producto.precioAlmacen }}</td>
+            </tr>
+            <tr>
+                <th>Preciotienda</th>
+                <td>{{ producto.precioTienda }}</td>
+            </tr>
+            <tr>
+                <th>Preciopvp</th>
+                <td>{{ producto.precioPvp }}</td>
+            </tr>
+            <tr>
+                <th>Precioiva</th>
+                <td>{{ producto.precioIva }}</td>
+            </tr>
+            <tr>
+                <th>Codigobarras</th>
+                <td>{{ producto.codigobarras }}</td>
+            </tr>
+            <tr>
+                <th>Imagen</th>
+                <td>{{ producto.imagen }}</td>
+            </tr>
+            <tr>
+                <th>Borrado</th>
+                <td>{{ producto.borrado }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('productos') }}">Regresar a la lista</a>
+        </li>
+        <li>
+            <a href="{{ path('productos_edit', { 'page': producto.id }) }}">Editar</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Eliminar">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

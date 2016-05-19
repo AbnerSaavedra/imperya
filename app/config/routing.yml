@@ -27,5 +27,4 @@ fos_user_group:
     prefix: /group
 NelmioApiDocBundle:
     resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
-    prefix:   /doc
-    
+    prefix:   /doc    

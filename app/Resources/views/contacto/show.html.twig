@@ -1,0 +1,116 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Contacto</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ contacto.id }}</td>
+            </tr>
+            <tr>
+                <th>Paisid</th>
+                <td>{{ contacto.paisid }}</td>
+            </tr>
+            <tr>
+                <th>Codigo</th>
+                <td>{{ contacto.codigo }}</td>
+            </tr>
+            <tr>
+                <th>Identificacion</th>
+                <td>{{ contacto.identificacion }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ contacto.nombre }}</td>
+            </tr>
+            <tr>
+                <th>Direccion</th>
+                <td>{{ contacto.direccion }}</td>
+            </tr>
+            <tr>
+                <th>Nombrecomercial</th>
+                <td>{{ contacto.nombrecomercial }}</td>
+            </tr>
+            <tr>
+                <th>Telefonos</th>
+                <td>{{ contacto.telefonos }}</td>
+            </tr>
+            <tr>
+                <th>Ciudad</th>
+                <td>{{ contacto.ciudad }}</td>
+            </tr>
+            <tr>
+                <th>Fax</th>
+                <td>{{ contacto.fax }}</td>
+            </tr>
+            <tr>
+                <th>Pais</th>
+                <td>{{ contacto.pais }}</td>
+            </tr>
+            <tr>
+                <th>Contacto</th>
+                <td>{{ contacto.contacto }}</td>
+            </tr>
+            <tr>
+                <th>Registroempresarial</th>
+                <td>{{ contacto.registroempresarial }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ contacto.email }}</td>
+            </tr>
+            <tr>
+                <th>Actividadeconomica</th>
+                <td>{{ contacto.actividadeconomica }}</td>
+            </tr>
+            <tr>
+                <th>Clasecontribuyente</th>
+                <td>{{ contacto.clasecontribuyente }}</td>
+            </tr>
+            <tr>
+                <th>Notas</th>
+                <td>{{ contacto.notas }}</td>
+            </tr>
+            <tr>
+                <th>Cliente</th>
+                <td>{{ contacto.cliente }}</td>
+            </tr>
+            <tr>
+                <th>Proveedor</th>
+                <td>{{ contacto.proveedor }}</td>
+            </tr>
+            <tr>
+                <th>Vendedor</th>
+                <td>{{ contacto.vendedor }}</td>
+            </tr>
+            <tr>
+                <th>Empleado</th>
+                <td>{{ contacto.empleado }}</td>
+            </tr>
+            <tr>
+                <th>Transportista</th>
+                <td>{{ contacto.transportista }}</td>
+            </tr>
+            <tr>
+                <th>Recaudador</th>
+                <td>{{ contacto.recaudador }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('contacto') }}">Regresar a la lista</a>
+        </li>
+        <li>
+            <a href="{{ path('contacto_edit', { 'page': contacto.id }) }}">Editar</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Eliminar">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

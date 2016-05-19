@@ -212,6 +212,13 @@ class IngresosController extends FOSRestController implements ClassResourceInter
             return $e->getForm();
         }
     }
+    
+    /**
+     * @Rest\View()
+     */
+    public function optionsAction()
+    {} // "options_users"        [OPTIONS] /users
+
 
     /**
      * Deletes a Ingresos entity.

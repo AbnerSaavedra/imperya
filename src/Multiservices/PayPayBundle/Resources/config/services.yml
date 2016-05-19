@@ -25,12 +25,13 @@ services:
             - { name: form.type, alias: formasPagos }
     paypaybundle_datatable.ingresos:
         class: Multiservices\PayPayBundle\Datatables\IngresosDatatable
-        tags:
-            - { name: sg.datatable.view }            
+        parent: sg_datatables.datatable.abstract          
     paypaybundle_datatable.egresos:
         class: Multiservices\PayPayBundle\Datatables\EgresosDatatable
-        tags:
-            - { name: sg.datatable.view }  
+        parent: sg_datatables.datatable.abstract
+    paypaybundle_datatable.productos:
+        class: Multiservices\PayPayBundle\Datatables\ProductosDatatable
+        parent: sg_datatables.datatable.abstract   
     paypaybundle_ingresos.listener:
         class: Multiservices\PayPayBundle\EventListener\IngresosListener
         arguments: ["@security.token_storage","@service_container"]

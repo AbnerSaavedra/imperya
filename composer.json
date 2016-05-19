@@ -30,7 +30,7 @@
         "incenteev/composer-parameter-handler": "^2.0",
         
         "friendsofsymfony/user-bundle": "dev-master",
-        "friendsofsymfony/jsrouting-bundle": "^1.6",
+        "friendsofsymfony/jsrouting-bundle": "dev-master",
         "friendsofsymfony/rest-bundle": "^1.7",
         
         "fresh/doctrine-enum-bundle": "^4.1",
@@ -39,7 +39,8 @@
         "nelmio/api-doc-bundle": "^2.11",
         "csa/guzzle-bundle": "^2.0",
         "oneup/flysystem-bundle": "^1.2",
-        "lexik/jwt-authentication-bundle": "dev-master"
+        "lexik/jwt-authentication-bundle": "dev-master",
+        "renearias/arxis-datatables-bundle": "dev-master"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

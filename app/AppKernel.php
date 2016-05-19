@@ -26,6 +26,7 @@ class AppKernel extends Kernel
             new Csa\Bundle\GuzzleBundle\CsaGuzzleBundle(),
             new Lexik\Bundle\JWTAuthenticationBundle\LexikJWTAuthenticationBundle(),
             new Oneup\FlysystemBundle\OneupFlysystemBundle(),
+            new Sg\DatatablesBundle\SgDatatablesBundle(),
             //bundles propias
             new AppBundle\AppBundle(),
             new Arxis\ContableBundle\ArxisContableBundle(),

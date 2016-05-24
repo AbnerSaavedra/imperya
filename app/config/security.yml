@@ -28,7 +28,7 @@ security:
             anonymous: true
             stateless: true
             form_login:
-                check_path:               /login
+                check_path:               /login_check
                 username_parameter:       _username
                 password_parameter:       _password
                 success_handler:          lexik_jwt_authentication.handler.authentication_success

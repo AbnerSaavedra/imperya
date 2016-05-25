@@ -26,7 +26,7 @@ class ProductosController extends FOSRestController implements ClassResourceInte
      *   resource = true,
      *   section="Productos",
      *   filters={
-     *      {"name"="search[value]", "dataType"="string","default"="", "required":true},
+     *      {"name"="search[value]", "dataType"="string", "default"="", "required":true},
      *      {"name"="draw", "dataType"="integer"}
      *   },
      *   statusCodes = {

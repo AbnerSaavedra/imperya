@@ -25,6 +25,10 @@ class FacturasController extends FOSRestController implements ClassResourceInter
      * @ApiDoc(
      *   resource = true,
      *   section="Facturas",
+     *   filters={
+     *      {"name"="search[value]", "dataType"="string","default"="", "required":true},
+     *      {"name"="draw", "dataType"="integer"}
+     *   },
      *   statusCodes = {
      *     200 = "Returned when successful",
      *     404 = "Returned when not found"

@@ -25,6 +25,10 @@ class IngresosController extends FOSRestController implements ClassResourceInter
      * @ApiDoc(
      *   resource = true,
      *   section="Ingresos",
+     *   filters={
+     *      {"name"="search[value]", "dataType"="string", "default"="", "required":true},
+     *      {"name"="draw", "dataType"="integer"}
+     *   },
      *   statusCodes = {
      *     200 = "Returned when successful",
      *     404 = "Returned when not found"
@@ -36,19 +40,21 @@ class IngresosController extends FOSRestController implements ClassResourceInter
      */
     public function cgetAction()
     {
-        $em = $this->getDoctrine()->getManager();
+        //$em = $this->getDoctrine()->getManager();
 
-        $ingresos = $em->getRepository('PayPayBundle:Ingresos')->findAll();
+        //$ingresos = $em->getRepository('PayPayBundle:Ingresos')->findAll();
 
-        //$ingresos_datatable = $this->get("paypaybundle_datatable.ingresos");
-        //$ingresos_datatable->buildDatatable();
+        $ingresos_datatable = $this->get("paypaybundle_datatable.ingresos");
+        $ingresos_datatable->buildDatatable();
+        $query = $this->get('sg_datatables.query')->getQueryFrom($ingresos_datatable);
 
-        $view = $this->view($ingresos)
+    	return $query->getResponse();
+        /*$view = $this->view($ingresos)
             ->setTemplate('ingresos/index.html.twig')
             ->setTemplateData([
                             'ingresos' => $ingresos
                              ]);
-        return $ingresos;
+        return $ingresos;*/
     }
     
     /**

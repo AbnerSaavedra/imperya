@@ -45,7 +45,7 @@ class IngresosType extends AbstractType
                 ;
                 
                 
-        $formModifier = function (FormInterface $form, Cliente $cliente = null, PersistentCollection $facturas=null) {
+        /*$formModifier = function (FormInterface $form, Cliente $cliente = null, PersistentCollection $facturas=null) {
                 
                $facturas = null === $facturas ? array() : $facturas->toArray();
                 
@@ -86,7 +86,7 @@ class IngresosType extends AbstractType
                 // the parent to the callback functions!
                 $formModifier($event->getForm()->getParent(), $cliente,$facturas);
             }
-        );   
+        );   */
             
        
     }

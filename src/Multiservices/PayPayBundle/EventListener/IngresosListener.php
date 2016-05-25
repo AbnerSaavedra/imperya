@@ -44,7 +44,7 @@ class IngresosListener
     public function prePersist(Ingresos $ingreso, LifecycleEventArgs $args)
     {
             $user = $this->tokenStorage->getToken()->getUser();
-            $ingreso->registrarPagoEnFacturas();
+            //$ingreso->registrarPagoEnFacturas();
             $ingreso->setCollectedby($user);
             
     }
@@ -52,7 +52,12 @@ class IngresosListener
     public function preUpdate(Ingresos $ingreso, PreUpdateEventArgs $args)
     {
             $user = $this->tokenStorage->getToken()->getUser();
-            $ingreso->modificarPagoEnFacturas($args->getOldValue('monto'));
+            $change=$args->getEntityChangeSet();
+            if (isset($change['monto']))
+            {
+                $oldmonto=$args->getOldValue('monto');
+                $ingreso->modificarPagoEnFacturas($oldmonto);
+            }
             $ingreso->setModifiedby($user);
     }
     

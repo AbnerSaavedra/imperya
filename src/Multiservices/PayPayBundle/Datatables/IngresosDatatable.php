@@ -143,6 +143,10 @@ class IngresosDatatable extends AbstractDatatableView
             ))
             ->add('cliente.id', 'column', array(
                 'visible' => false,
+            )) 
+            ->add('formaPago.formaPago', 'column', array(
+                'title' => 'Forma de Pago',
+                'width'=>'5em'
             ))    
                 
             /*->add('facturas.pension.estudiante.estudiante', 'array', array(
@@ -159,15 +163,12 @@ class IngresosDatatable extends AbstractDatatableView
                 'title' => 'Facturas',
                'data' => 'facturas[, ].id',
                 'width'=>'6em'
-            ))
+            ))*/
             ->add('collectedby.name', 'column', array(
                 'title' => 'Cobrado por',
                 'width'=>'6em'
             )) 
-            ->add('formaPago.formaPago', 'column', array(
-                'title' => 'Forma de Pago',
-                'width'=>'5em'
-            ))    */
+            
            /* ->add(null, 'action', array(
                 'title' => $this->translator->trans('datatables.actions.title'),
                 'actions' => array(

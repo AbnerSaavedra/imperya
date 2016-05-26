@@ -5,12 +5,16 @@ namespace Arxis\ContableBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Fresh\DoctrineEnumBundle\Validator\Constraints as DoctrineAssert;
 use Arxis\ContableBundle\DBAL\Types\ClaseContribuyenteType;
+use Arxis\ContableBundle\Entity\Cliente;
 
 /**
  * Contacto
  *
  * @ORM\Table(name="contacto", indexes={@ORM\Index(name="Contacto_TipoIdentificacion", columns={"TipoIdentificacionId"}), @ORM\Index(name="Contacto_TipoPersona", columns={"TipoPersonaId"})})
  * @ORM\Entity
+ * @ORM\InheritanceType("JOINED")
+ * @ORM\DiscriminatorColumn(name="discr", type="string")
+ * @ORM\DiscriminatorMap({"contacto" = "Contacto", "cliente" = "Cliente"})
  */
 class Contacto  ///Anteriormente se llamaba Contacto renombrada asi para compatibilidad
 {
@@ -198,28 +202,6 @@ class Contacto  ///Anteriormente se llamaba Contacto renombrada asi para compati
      */
     private $tipopersonaid;
     
-     /** 
-      * @ORM\OneToMany(targetEntity="\Multiservices\PayPayBundle\Entity\Facturas", mappedBy="idcliente")
-      * 
-      */
-    private $facturas;
-    
-     /** 
-      * @ORM\OneToMany(targetEntity="\Multiservices\PayPayBundle\Entity\Ingresos", mappedBy="cliente")
-      * 
-      */
-    private $pagos;
-
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->facturas = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->pagos = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
     /**
      * Get id
      *
@@ -806,73 +788,7 @@ class Contacto  ///Anteriormente se llamaba Contacto renombrada asi para compati
         return $this->tipopersonaid;
     }
 
-    /**
-     * Add factura
-     *
-     * @param \Multiservices\PayPayBundle\Entity\Facturas $factura
-     *
-     * @return Contacto
-     */
-    public function addFactura(\Multiservices\PayPayBundle\Entity\Facturas $factura)
-    {
-        $this->facturas[] = $factura;
-
-        return $this;
-    }
-
-    /**
-     * Remove factura
-     *
-     * @param \Multiservices\PayPayBundle\Entity\Facturas $factura
-     */
-    public function removeFactura(\Multiservices\PayPayBundle\Entity\Facturas $factura)
-    {
-        $this->facturas->removeElement($factura);
-    }
-
-    /**
-     * Get facturas
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getFacturas()
-    {
-        return $this->facturas;
-    }
-
-    /**
-     * Add pago
-     *
-     * @param \Multiservices\PayPayBundle\Entity\Ingresos $pago
-     *
-     * @return Contacto
-     */
-    public function addPago(\Multiservices\PayPayBundle\Entity\Ingresos $pago)
-    {
-        $this->pagos[] = $pago;
-
-        return $this;
-    }
-
-    /**
-     * Remove pago
-     *
-     * @param \Multiservices\PayPayBundle\Entity\Ingresos $pago
-     */
-    public function removePago(\Multiservices\PayPayBundle\Entity\Ingresos $pago)
-    {
-        $this->pagos->removeElement($pago);
-    }
-
-    /**
-     * Get pagos
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getPagos()
-    {
-        return $this->pagos;
-    }
+    
     
     public function __toString() {
         return $this->nombre;

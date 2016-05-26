@@ -31,9 +31,9 @@ class Facturas
     private $legal=0;
 
     /**
-     * @var \Arxis\ContableBundle\Entity\Contacto
+     * @var \Arxis\ContableBundle\Entity\Cliente
      *
-     * @ORM\ManyToOne(targetEntity="\Arxis\ContableBundle\Entity\Contacto", inversedBy="facturas")
+     * @ORM\ManyToOne(targetEntity="\Arxis\ContableBundle\Entity\Cliente", inversedBy="facturas")
      * @ORM\JoinColumn(name="idcliente", referencedColumnName="id")
      * 
      */
@@ -644,11 +644,11 @@ class Facturas
     /**
      * Set idcliente
      *
-     * @param \Arxis\ContableBundle\Entity\Contacto $idcliente
+     * @param \Arxis\ContableBundle\Entity\Cliente $idcliente
      *
      * @return Facturas
      */
-    public function setIdcliente(\Arxis\ContableBundle\Entity\Contacto $idcliente = null)
+    public function setIdcliente(\Arxis\ContableBundle\Entity\Cliente $idcliente = null)
     {
         $this->idcliente = $idcliente;
 
@@ -658,7 +658,7 @@ class Facturas
     /**
      * Get idcliente
      *
-     * @return \Arxis\ContableBundle\Entity\Contacto
+     * @return \Arxis\ContableBundle\Entity\Cliente
      */
     public function getIdcliente()
     {

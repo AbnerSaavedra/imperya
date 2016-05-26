@@ -101,9 +101,9 @@ class Ingresos
     private $referencia;
 
     /**
-     * @var \Arxis\ContableBundle\Entity\Contacto
+     * @var \Arxis\ContableBundle\Entity\Cliente
      *
-     * @ORM\ManyToOne(targetEntity="\Arxis\ContableBundle\Entity\Contacto", inversedBy="pagos")
+     * @ORM\ManyToOne(targetEntity="\Arxis\ContableBundle\Entity\Cliente", inversedBy="pagos")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="cliente_id", referencedColumnName="id")
      * })
@@ -308,11 +308,11 @@ class Ingresos
     /**
      * Set cliente
      *
-     * @param \Arxis\ContableBundle\Entity\Contacto $cliente
+     * @param \Arxis\ContableBundle\Entity\Cliente $cliente
      *
      * @return Ingresos
      */
-    public function setCliente(\Arxis\ContableBundle\Entity\Contacto $cliente = null)
+    public function setCliente(\Arxis\ContableBundle\Entity\Cliente $cliente = null)
     {
         $this->cliente = $cliente;
 
@@ -322,7 +322,7 @@ class Ingresos
     /**
      * Get cliente
      *
-     * @return \Arxis\ContableBundle\Entity\Contacto
+     * @return \Arxis\ContableBundle\Entity\Cliente
      */
     public function getCliente()
     {

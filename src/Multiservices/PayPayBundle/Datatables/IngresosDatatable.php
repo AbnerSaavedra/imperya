@@ -138,10 +138,6 @@ class IngresosDatatable extends AbstractDatatableView
                 'title' => 'Referencia',
             ))*/
 
-
-
-
-            
             ->add('cliente.nombre', 'column', array(
                 'title' => 'Cliente',
             ))

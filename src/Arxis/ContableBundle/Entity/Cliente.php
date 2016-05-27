@@ -12,19 +12,11 @@ use Arxis\ContableBundle\Entity\Contacto;
  * Description of Cliente
  *
  * @author Rene Arias <renearias@arxis.la>
+ * @ORM\Table()
  * @ORM\Entity
  * 
  */
 class Cliente extends Contacto{
-    
-     /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
     
      /** 
       * @ORM\OneToMany(targetEntity="\Multiservices\PayPayBundle\Entity\Facturas", mappedBy="idcliente")

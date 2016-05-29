@@ -12,7 +12,7 @@ services:
        arguments: ["@doctrine.orm.entity_manager","@form.factory","@paypaybundle.form.facturastype"]
     paypaybundle.form.facturastype:
         class: Multiservices\PayPayBundle\Form\FacturasType    
-    paypaybundle.form.handler.productod:
+    paypaybundle.form.handler.productos:
        class: AppBundle\Form\Handler\FormHandler
        arguments: ["@doctrine.orm.entity_manager","@form.factory","@paypaybundle.form.productostype"]
     paypaybundle.form.productostype:

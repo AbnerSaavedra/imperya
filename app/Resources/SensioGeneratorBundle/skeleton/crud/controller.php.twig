@@ -32,7 +32,7 @@ use {{ namespace }}\Form\{{ entity }}Type;
 {% if 'annotation' == format %}
  * @Route("/{{ route_prefix }}")
 {% endif %}
-* @Rest\RouteResource("{{ entity_singularized|capitalize }}")
+* @Rest\RouteResource("{{ entity_singularized|lower }}")
 {% endblock phpdoc_class_annotations %}
  */
 {% block class_definition %}

@@ -15,7 +15,7 @@ use Multiservices\PayPayBundle\Form\IngresosType;
 /**
  * Ingresos controller.
  *
-* @Rest\RouteResource("Ingreso")
+* @Rest\RouteResource("ingreso")
  */
 class IngresosController extends FOSRestController implements ClassResourceInterface
 {

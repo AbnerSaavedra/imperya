@@ -15,7 +15,7 @@ use Multiservices\PayPayBundle\Form\ProductosType;
 /**
  * Productos controller.
  *
-* @Rest\RouteResource("Producto")
+* @Rest\RouteResource("producto")
  */
 class ProductosController extends FOSRestController implements ClassResourceInterface
 {

@@ -15,7 +15,7 @@ use Arxis\ContableBundle\Form\ClienteType;
 /**
  * Cliente controller.
  *
-* @Rest\RouteResource("Cliente")
+* @Rest\RouteResource("cliente")
  */
 class ClienteController extends FOSRestController implements ClassResourceInterface
 {

@@ -15,7 +15,7 @@ use Arxis\ContableBundle\Form\ContactoType;
 /**
  * Contacto controller.
  *
-* @Rest\RouteResource("Contacto")
+* @Rest\RouteResource("contacto")
  */
 class ContactoController extends FOSRestController implements ClassResourceInterface
 {

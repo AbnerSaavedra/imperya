@@ -93,14 +93,15 @@ class ProductosController extends FOSRestController implements ClassResourceInte
                 $request->request->all()
             );
             $routeOptions = array(
-                'producto'        => $producto->getId(),
-                '_format'    => $request->get('_format'),
+                'id'        => $producto->getId(),
+               // '_format'    => $request->get('_format'),
             );
-            return $this->routeRedirectView(
+            return $this->handleView($this->view($routeOptions, Response::HTTP_CREATED));
+            /*return $this->routeRedirectView(
                 'get_producto',
                 $routeOptions,
                 Response::HTTP_CREATED
-            );
+            );*/
         } catch (InvalidFormException $e) {
             return $e->getForm();
         }

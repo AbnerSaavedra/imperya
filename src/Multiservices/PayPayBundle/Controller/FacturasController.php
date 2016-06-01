@@ -89,14 +89,15 @@ class FacturasController extends FOSRestController implements ClassResourceInter
                 $request->request->all()
             );
             $routeOptions = array(
-                'factura'        => $factura->getId(),
-                '_format'    => $request->get('_format'),
+                'id'        => $factura->getId(),
+                //'_format'    => $request->get('_format'),
             );
-            return $this->routeRedirectView(
+            return $this->handleView($this->view($routeOptions, Response::HTTP_CREATED));
+            /*return $this->routeRedirectView(
                 'get_factura',
                 $routeOptions,
                 Response::HTTP_CREATED
-            );
+            );*/
         } catch (InvalidFormException $e) {
             return $e->getForm();
         }

@@ -89,14 +89,15 @@ class ClienteController extends FOSRestController implements ClassResourceInterf
                 $request->request->all()
             );
             $routeOptions = array(
-                'cliente'        => $cliente->getId(),
-                '_format'    => $request->get('_format'),
+                'id'        => $cliente->getId(),
+                //'_format'    => $request->get('_format'),
             );
-            return $this->routeRedirectView(
+            return $this->handleView($this->view($routeOptions, Response::HTTP_CREATED));
+            /*return $this->routeRedirectView(
                 'get_cliente',
                 $routeOptions,
                 Response::HTTP_CREATED
-            );
+            );*/
         } catch (InvalidFormException $e) {
             return $e->getForm();
         }

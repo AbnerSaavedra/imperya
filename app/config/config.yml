@@ -111,7 +111,6 @@ fos_rest:
         serialize_null: false
         force_redirects:
             html: true
-            json: true
     serializer:
         serialize_null: false
     routing_loader:

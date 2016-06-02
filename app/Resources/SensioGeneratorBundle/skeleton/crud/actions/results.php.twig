@@ -6,10 +6,25 @@
      *
 {% block phpdoc_method_annotations %}
 {% if 'annotation' == format %}
-     * @Route("/new", name="{{ route_name_prefix }}_results")
+     * @Route("/results", name="{{ route_name_prefix }}_results")
      * @Method({"GET", "POST"})
 {% endif %}
 {% endblock phpdoc_method_annotations %}
+     * @ApiDoc(
+     *   resource = true,
+     *   section="{{ entity }}",
+     *   filters={
+     *      {"name"="search[value]", "dataType"="string", "default"="", "required":true},
+     *      {"name"="draw", "dataType"="integer"}
+     *   },
+     *   statusCodes = {
+     *     200 = "Returned when successful",
+     *     404 = "Returned when not found"
+     *   }
+     * )
+     *
+     * @Rest\View()
+     *
      */
 {% block method_definition %}
     public function resultsAction(Request $request)

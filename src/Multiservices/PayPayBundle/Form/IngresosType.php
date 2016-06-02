@@ -42,7 +42,7 @@ class IngresosType extends AbstractType
             ->add('formaPago')
            // ->add('factura')
            
-                ;
+        ;
                 
                 
         /*$formModifier = function (FormInterface $form, Cliente $cliente = null, PersistentCollection $facturas=null) {
@@ -57,9 +57,9 @@ class IngresosType extends AbstractType
                     'property_path' => 'facturas',
                     'query_builder' => function (EntityRepository $er) use($cliente,$facturas)  {
                          return $er->facturasPendientes($cliente,$facturas);
-                    }
+    }
                 );
-                
+    
             $form->add('facturas', EntityType::class, $formOptions);
         };
 

@@ -54,7 +54,7 @@ class ProductosType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'Multiservices\PayPayBundle\Entity\Productos',
-            'attr' => array('ng-submit'=>"processForm(\$event,'productos')")
+            //'attr' => array('ng-submit'=>"processForm(\$event,'productos')")
         ));
     }
 }

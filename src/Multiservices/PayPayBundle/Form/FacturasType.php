@@ -19,7 +19,7 @@ class FacturasType extends AbstractType
     {
         $builder
             ->add('idcliente',null,array('label'=>'Cliente'))
-            ->add('legal')    
+            ->add('legal')
             //->add('emitido')
             //->add('vencimiento')
             //->add('pago')
@@ -50,21 +50,13 @@ class FacturasType extends AbstractType
     }
     
     /**
-     * @param OptionsResolverInterface $resolver
+     * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'Multiservices\PayPayBundle\Entity\Facturas',
-            'attr' => array('ng-submit'=>"processForm(\$event,'".$this->getName()."')")
+            //'attr' => array('ng-submit'=>"processForm(\$event,'facturas')")
         ));
-    }
-
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return 'multiservices_paypaybundle_facturas';
     }
 }

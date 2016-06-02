@@ -25,6 +25,41 @@ class ClienteController extends FOSRestController implements ClassResourceInterf
      * @ApiDoc(
      *   resource = true,
      *   section="Cliente",
+     *   statusCodes = {
+     *     200 = "Returned when successful",
+     *     404 = "Returned when not found"
+     *   }
+     * )
+     *
+     * @Rest\View()
+     *
+     */
+    public function cgetAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $clientes = $em->getRepository('ArxisContableBundle:Cliente')->findAll();
+
+        /*$clientes_datatable = $this->get("arxiscontablebundle_datatable.clientes");
+        $clientes_datatable->buildDatatable();
+        $query = $this->get('sg_datatables.query')->getQueryFrom($clientes_datatable);
+
+    	return $query->getResponse();*/
+
+        $view = $this->view($clientes)
+            ->setTemplate('cliente/index.html.twig')
+            ->setTemplateData([
+                            'clientes' => $clientes
+                             ]);
+        return $clientes;
+    }
+    
+       /**
+     * Get results from Contacto entity.
+     *
+     * @ApiDoc(
+     *   resource = true,
+     *   section="Cliente",
      *   filters={
      *      {"name"="search[value]", "dataType"="string", "default"="", "required":true},
      *      {"name"="draw", "dataType"="integer"}
@@ -38,24 +73,14 @@ class ClienteController extends FOSRestController implements ClassResourceInterf
      * @Rest\View()
      *
      */
-    public function cgetAction()
+    public function resultsAction(Request $request)
     {
-        //$em = $this->getDoctrine()->getManager();
 
-        //$clientes = $em->getRepository('ArxisContableBundle:Cliente')->findAll();
+        $datatable = $this->get('arxiscontablebundle_datatable.clientes');
+        $datatable->buildDatatable();
+        $query = $this->get('sg_datatables.query')->getQueryFrom($datatable);
 
-        $clientes_datatable = $this->get("arxiscontablebundle_datatable.clientes");
-        $clientes_datatable->buildDatatable();
-        $query = $this->get('sg_datatables.query')->getQueryFrom($clientes_datatable);
-
-    	return $query->getResponse();
-
-        /*$view = $this->view($clientes)
-            ->setTemplate('cliente/index.html.twig')
-            ->setTemplateData([
-                            'clientes' => $clientes
-                             ]);
-        return $clientes;*/
+        return $query->getResponse();
     }
     
     /**

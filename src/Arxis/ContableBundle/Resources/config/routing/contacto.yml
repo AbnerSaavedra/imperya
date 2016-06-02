@@ -1,24 +1,24 @@
 #para rutas front
-contacto:
-    path:      /contacto/{page}
+contactos:
+    path:      /contactos/{page}
     defaults:  { _controller: AppBundle:Default:inicio, page: index }
     requirements:
         page: \d+|new
     options:
         expose: true
 #rutas del back o api         
-contacto_api:
+contactos_api:
     type: rest
     resource: "@ArxisContableBundle/Controller/ContactoController.php"
     options:
         expose: true
     prefix: api 
-contacto_results:
-    path:     /contacto/results
+contactos_results:
+    path:     /contactos/results
     defaults: { _controller: "ArxisContableBundle:Contacto:results" }
     methods:  [GET, POST]
-contacto_edit:
-    path:     /contacto/{page}/edit
+contactos_edit:
+    path:     /contactos/{page}/edit
     defaults:  { _controller: AppBundle:Default:inicio, page: index }
     methods:  [GET, POST]
     options:

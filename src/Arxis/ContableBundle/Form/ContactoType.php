@@ -15,7 +15,7 @@ class ContactoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            //->add('paisid')
+            ->add('paisid')
             ->add('codigo')
             ->add('identificacion')
             ->add('nombre')

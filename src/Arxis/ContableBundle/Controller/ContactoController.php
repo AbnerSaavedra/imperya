@@ -36,24 +36,50 @@ class ContactoController extends FOSRestController implements ClassResourceInter
      */
     public function cgetAction()
     {
-        //$em = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager();
 
-        //$contactos = $em->getRepository('ArxisContableBundle:Contacto')->findAll();
+        $contactos = $em->getRepository('ArxisContableBundle:Contacto')->findAll();
 
-        $contactos_datatable = $this->get("arxiscontablebundle_datatable.contactos");
-        $contactos_datatable->buildDatatable();
-        $query = $this->get('sg_datatables.query')->getQueryFrom($contactos_datatable);
+        //$contactos_datatable = $this->get("arxiscontablebundle_datatable.contactos");
+        //$contactos_datatable->buildDatatable();
 
-    	return $query->getResponse();
-
-        /*$view = $this->view($contactos)
+        $view = $this->view($contactos)
             ->setTemplate('contacto/index.html.twig')
             ->setTemplateData([
                             'contactos' => $contactos
                              ]);
-        return $contactos;*/
+        return $contactos;
     }
-    
+
+    /**
+     * Get results from Contacto entity.
+     *
+     * @ApiDoc(
+     *   resource = true,
+     *   section="Contacto",
+     *   filters={
+     *      {"name"="search[value]", "dataType"="string", "default"="", "required":true},
+     *      {"name"="draw", "dataType"="integer"}
+     *   },
+     *   statusCodes = {
+     *     200 = "Returned when successful",
+     *     404 = "Returned when not found"
+     *   }
+     * )
+     *
+     * @Rest\View()
+     *
+     */
+    public function resultsAction(Request $request)
+    {
+
+        $datatable = $this->get('arxiscontablebundle_datatable.contactos');
+        $datatable->buildDatatable();
+        $query = $this->get('sg_datatables.query')->getQueryFrom($datatable);
+
+        return $query->getResponse();
+    }
+
     /**
      * Crea una nueva Contacto entidad.
      *
@@ -88,8 +114,9 @@ class ContactoController extends FOSRestController implements ClassResourceInter
                 $request->request->all()
             );
             $routeOptions = array(
+                //'contacto'        => $contacto->getId(),
                 'id'        => $contacto->getId(),
-               // '_format'    => $request->get('_format'),
+                //'_format'    => $request->get('_format'),
             );
             return $this->handleView($this->view($routeOptions, Response::HTTP_CREATED));
             /*return $this->routeRedirectView(
@@ -200,6 +227,8 @@ class ContactoController extends FOSRestController implements ClassResourceInter
      */
     public function patchAction(Request $request, Contacto $contacto)
     {
+        
+
         try {
             $contacto = $this->getHandler()->patch(
                 $contacto,
@@ -232,7 +261,7 @@ class ContactoController extends FOSRestController implements ClassResourceInter
     {
         $this->getHandler()->delete($contacto);
 
-        return $this->routeRedirectView('get_contacto', array(), Response::HTTP_NO_CONTENT);
+        return $this->routeRedirectView('get_contactos', array(), Response::HTTP_NO_CONTENT);
     }
 
        

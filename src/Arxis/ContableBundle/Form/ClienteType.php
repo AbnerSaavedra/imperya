@@ -16,8 +16,8 @@ class ClienteType extends AbstractType
     {
         $builder
             //->add('codigoCliente')
-            //->add('codigo')
-            //->add('identificacion')
+            ->add('codigo')
+            ->add('identificacion')
             ->add('nombre')
             /*->add('direccion')
             ->add('nombrecomercial')

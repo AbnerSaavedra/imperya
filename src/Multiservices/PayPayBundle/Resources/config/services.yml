@@ -29,6 +29,9 @@ services:
     paypaybundle_datatable.egresos:
         class: Multiservices\PayPayBundle\Datatables\EgresosDatatable
         parent: sg_datatables.datatable.abstract
+    paypaybundle_datatable.facturas:
+        class: Multiservices\PayPayBundle\Datatables\FacturasDatatable
+        parent: sg_datatables.datatable.abstract    
     paypaybundle_datatable.productos:
         class: Multiservices\PayPayBundle\Datatables\ProductosDatatable
         parent: sg_datatables.datatable.abstract   

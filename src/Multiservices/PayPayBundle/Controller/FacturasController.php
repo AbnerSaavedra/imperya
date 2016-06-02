@@ -40,19 +40,20 @@ class FacturasController extends FOSRestController implements ClassResourceInter
      */
     public function cgetAction()
     {
-        $em = $this->getDoctrine()->getManager();
+        /*$em = $this->getDoctrine()->getManager();
 
-        $facturas = $em->getRepository('PayPayBundle:Facturas')->findAll();
+        $facturas = $em->getRepository('PayPayBundle:Facturas')->findAll();*/
 
-        //$facturas_datatable = $this->get("paypaybundle_datatable.facturas");
-        //$facturas_datatable->buildDatatable();
-
-        $view = $this->view($facturas)
+        $facturas_datatable = $this->get("paypaybundle_datatable.facturas");
+        $facturas_datatable->buildDatatable();
+        $query = $this->get('sg_datatables.query')->getQueryFrom($facturas_datatable);
+        return $query->getResponse();
+        /*$view = $this->view($facturas)
             ->setTemplate('facturas/index.html.twig')
             ->setTemplateData([
                             'facturas' => $facturas
                              ]);
-        return $facturas;
+        return $facturas;*/
     }
     
     /**

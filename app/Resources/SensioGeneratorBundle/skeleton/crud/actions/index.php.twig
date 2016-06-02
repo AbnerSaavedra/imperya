@@ -36,6 +36,8 @@
 
         //${{ entity_pluralized }}_datatable = $this->get("{{ bundle|lower }}_datatable.{{ entity_pluralized }}");
         //${{ entity_pluralized }}_datatable->buildDatatable();
+        //$query = $this->get('sg_datatables.query')->getQueryFrom(${{ entity_pluralized }}_datatable);
+        //return $query->getResponse();
 {% endblock method_body %}
 
 {% block method_return %}

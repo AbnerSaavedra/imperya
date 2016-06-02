@@ -40,19 +40,22 @@ class ClienteController extends FOSRestController implements ClassResourceInterf
      */
     public function cgetAction()
     {
-        $em = $this->getDoctrine()->getManager();
+        //$em = $this->getDoctrine()->getManager();
 
-        $clientes = $em->getRepository('ArxisContableBundle:Cliente')->findAll();
+        //$clientes = $em->getRepository('ArxisContableBundle:Cliente')->findAll();
 
-        //$clientes_datatable = $this->get("arxiscontablebundle_datatable.clientes");
-        //$clientes_datatable->buildDatatable();
+        $clientes_datatable = $this->get("arxiscontablebundle_datatable.clientes");
+        $clientes_datatable->buildDatatable();
+        $query = $this->get('sg_datatables.query')->getQueryFrom($clientes_datatable);
 
-        $view = $this->view($clientes)
+    	return $query->getResponse();
+
+        /*$view = $this->view($clientes)
             ->setTemplate('cliente/index.html.twig')
             ->setTemplateData([
                             'clientes' => $clientes
                              ]);
-        return $clientes;
+        return $clientes;*/
     }
     
     /**

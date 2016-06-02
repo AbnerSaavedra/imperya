@@ -36,19 +36,22 @@ class ContactoController extends FOSRestController implements ClassResourceInter
      */
     public function cgetAction()
     {
-        $em = $this->getDoctrine()->getManager();
+        //$em = $this->getDoctrine()->getManager();
 
-        $contactos = $em->getRepository('ArxisContableBundle:Contacto')->findAll();
+        //$contactos = $em->getRepository('ArxisContableBundle:Contacto')->findAll();
 
-        //$contactos_datatable = $this->get("arxiscontablebundle_datatable.contactos");
-        //$contactos_datatable->buildDatatable();
+        $contactos_datatable = $this->get("arxiscontablebundle_datatable.contactos");
+        $contactos_datatable->buildDatatable();
+        $query = $this->get('sg_datatables.query')->getQueryFrom($contactos_datatable);
 
-        $view = $this->view($contactos)
+    	return $query->getResponse();
+
+        /*$view = $this->view($contactos)
             ->setTemplate('contacto/index.html.twig')
             ->setTemplateData([
                             'contactos' => $contactos
                              ]);
-        return $contactos;
+        return $contactos;*/
     }
     
     /**

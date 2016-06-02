@@ -25,6 +25,38 @@ class IngresosController extends FOSRestController implements ClassResourceInter
      * @ApiDoc(
      *   resource = true,
      *   section="Ingresos",
+     *   statusCodes = {
+     *     200 = "Returned when successful",
+     *     404 = "Returned when not found"
+     *   }
+     * )
+     *
+     * @Rest\View()
+     *
+     */
+    public function cgetAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $ingresos = $em->getRepository('PayPayBundle:Ingresos')->findAll();
+
+        //$ingresos_datatable = $this->get("paypaybundle_datatable.ingresos");
+        //$ingresos_datatable->buildDatatable();
+
+        $view = $this->view($ingresos)
+            ->setTemplate('ingresos/index.html.twig')
+            ->setTemplateData([
+                            'ingresos' => $ingresos
+                             ]);
+        return $ingresos;
+    }
+
+    /**
+     * Get results from Ingresos entity.
+     *
+     * @ApiDoc(
+     *   resource = true,
+     *   section="Ingresos",
      *   filters={
      *      {"name"="search[value]", "dataType"="string", "default"="", "required":true},
      *      {"name"="draw", "dataType"="integer"}
@@ -38,25 +70,16 @@ class IngresosController extends FOSRestController implements ClassResourceInter
      * @Rest\View()
      *
      */
-    public function cgetAction()
+    public function resultsAction(Request $request)
     {
-        //$em = $this->getDoctrine()->getManager();
 
-        //$ingresos = $em->getRepository('PayPayBundle:Ingresos')->findAll();
+        $datatable = $this->get('paypaybundle_datatable.ingresos');
+        $datatable->buildDatatable();
+        $query = $this->get('sg_datatables.query')->getQueryFrom($datatable);
 
-        $ingresos_datatable = $this->get("paypaybundle_datatable.ingresos");
-        $ingresos_datatable->buildDatatable();
-        $query = $this->get('sg_datatables.query')->getQueryFrom($ingresos_datatable);
-
-    	return $query->getResponse();
-        /*$view = $this->view($ingresos)
-            ->setTemplate('ingresos/index.html.twig')
-            ->setTemplateData([
-                            'ingresos' => $ingresos
-                             ]);
-        return $ingresos;*/
+        return $query->getResponse();
     }
-    
+
     /**
      * Crea una nueva Ingresos entidad.
      *
@@ -91,6 +114,7 @@ class IngresosController extends FOSRestController implements ClassResourceInter
                 $request->request->all()
             );
             $routeOptions = array(
+                //'ingreso'        => $ingreso->getId(),
                 'id'        => $ingreso->getId(),
                 //'_format'    => $request->get('_format'),
             );
@@ -219,13 +243,6 @@ class IngresosController extends FOSRestController implements ClassResourceInter
             return $e->getForm();
         }
     }
-    
-    /**
-     * @Rest\View()
-     */
-    public function optionsAction()
-    {} // "options_users"        [OPTIONS] /users
-
 
     /**
      * Deletes a Ingresos entity.

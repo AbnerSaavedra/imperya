@@ -15,7 +15,7 @@ use Multiservices\PayPayBundle\Form\FacturasType;
 /**
  * Facturas controller.
  *
-* @Rest\RouteResource("Factura")
+* @Rest\RouteResource("factura")
  */
 class FacturasController extends FOSRestController implements ClassResourceInterface
 {
@@ -25,10 +25,6 @@ class FacturasController extends FOSRestController implements ClassResourceInter
      * @ApiDoc(
      *   resource = true,
      *   section="Facturas",
-     *   filters={
-     *      {"name"="search[value]", "dataType"="string","default"="", "required":true},
-     *      {"name"="draw", "dataType"="integer"}
-     *   },
      *   statusCodes = {
      *     200 = "Returned when successful",
      *     404 = "Returned when not found"
@@ -40,22 +36,50 @@ class FacturasController extends FOSRestController implements ClassResourceInter
      */
     public function cgetAction()
     {
-        /*$em = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager();
 
-        $facturas = $em->getRepository('PayPayBundle:Facturas')->findAll();*/
+        $facturas = $em->getRepository('PayPayBundle:Facturas')->findAll();
 
-        $facturas_datatable = $this->get("paypaybundle_datatable.facturas");
-        $facturas_datatable->buildDatatable();
-        $query = $this->get('sg_datatables.query')->getQueryFrom($facturas_datatable);
-        return $query->getResponse();
-        /*$view = $this->view($facturas)
+        //$facturas_datatable = $this->get("paypaybundle_datatable.facturas");
+        //$facturas_datatable->buildDatatable();
+
+        $view = $this->view($facturas)
             ->setTemplate('facturas/index.html.twig')
             ->setTemplateData([
                             'facturas' => $facturas
                              ]);
-        return $facturas;*/
+        return $facturas;
     }
-    
+
+    /**
+     * Get results from Facturas entity.
+     *
+     * @ApiDoc(
+     *   resource = true,
+     *   section="Facturas",
+     *   filters={
+     *      {"name"="search[value]", "dataType"="string", "default"="", "required":true},
+     *      {"name"="draw", "dataType"="integer"}
+     *   },
+     *   statusCodes = {
+     *     200 = "Returned when successful",
+     *     404 = "Returned when not found"
+     *   }
+     * )
+     *
+     * @Rest\View()
+     *
+     */
+    public function resultsAction(Request $request)
+    {
+
+        $datatable = $this->get('paypaybundle_datatable.facturas');
+        $datatable->buildDatatable();
+        $query = $this->get('sg_datatables.query')->getQueryFrom($datatable);
+
+        return $query->getResponse();
+    }
+
     /**
      * Crea una nueva Facturas entidad.
      *
@@ -90,6 +114,7 @@ class FacturasController extends FOSRestController implements ClassResourceInter
                 $request->request->all()
             );
             $routeOptions = array(
+                //'factura'        => $factura->getId(),
                 'id'        => $factura->getId(),
                 //'_format'    => $request->get('_format'),
             );

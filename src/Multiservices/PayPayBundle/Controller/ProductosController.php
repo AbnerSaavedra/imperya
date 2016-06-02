@@ -25,6 +25,38 @@ class ProductosController extends FOSRestController implements ClassResourceInte
      * @ApiDoc(
      *   resource = true,
      *   section="Productos",
+     *   statusCodes = {
+     *     200 = "Returned when successful",
+     *     404 = "Returned when not found"
+     *   }
+     * )
+     *
+     * @Rest\View()
+     *
+     */
+    public function cgetAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $productos = $em->getRepository('PayPayBundle:Productos')->findAll();
+
+        //$productos_datatable = $this->get("paypaybundle_datatable.productos");
+        //$productos_datatable->buildDatatable();
+
+        $view = $this->view($productos)
+            ->setTemplate('productos/index.html.twig')
+            ->setTemplateData([
+                            'productos' => $productos
+                             ]);
+        return $productos;
+    }
+
+    /**
+     * Get results from Productos entity.
+     *
+     * @ApiDoc(
+     *   resource = true,
+     *   section="Productos",
      *   filters={
      *      {"name"="search[value]", "dataType"="string", "default"="", "required":true},
      *      {"name"="draw", "dataType"="integer"}
@@ -38,27 +70,16 @@ class ProductosController extends FOSRestController implements ClassResourceInte
      * @Rest\View()
      *
      */
-    public function cgetAction()
+    public function resultsAction(Request $request)
     {
-        //$em = $this->getDoctrine()->getManager();
 
-        //$productos = $em->getRepository('PayPayBundle:Productos')->findAll();
+        $datatable = $this->get('paypaybundle_datatable.productos');
+        $datatable->buildDatatable();
+        $query = $this->get('sg_datatables.query')->getQueryFrom($datatable);
 
-        $productos_datatable = $this->get("paypaybundle_datatable.productos");
-        $productos_datatable->buildDatatable();
-        
-    	$query = $this->get('sg_datatables.query')->getQueryFrom($productos_datatable);
-
-    	return $query->getResponse();
-
-        /*$view = $this->view($productos)
-            ->setTemplate('productos/index.html.twig')
-            ->setTemplateData([
-                            'productos' => $productos
-                             ]);
-        return $productos;*/
+        return $query->getResponse();
     }
-    
+
     /**
      * Crea una nueva Productos entidad.
      *
@@ -93,8 +114,9 @@ class ProductosController extends FOSRestController implements ClassResourceInte
                 $request->request->all()
             );
             $routeOptions = array(
+                //'producto'        => $producto->getId(),
                 'id'        => $producto->getId(),
-               // '_format'    => $request->get('_format'),
+                //'_format'    => $request->get('_format'),
             );
             return $this->handleView($this->view($routeOptions, Response::HTTP_CREATED));
             /*return $this->routeRedirectView(

@@ -54,6 +54,41 @@ class ClienteController extends FOSRestController implements ClassResourceInterf
         return $clientes;
     }
     
+    /**
+     * Lists all Cliente entities simple.
+     *
+     * @ApiDoc(
+     *   resource = true,
+     *   section="Cliente",
+     *   statusCodes = {
+     *     200 = "Returned when successful",
+     *     404 = "Returned when not found"
+     *   }
+     * )
+     *
+     * @Rest\View()
+     *
+     */
+    public function simpleAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $clientes = $em->getRepository('ArxisContableBundle:Cliente')->clientesSimple();
+
+        /*$clientes_datatable = $this->get("arxiscontablebundle_datatable.clientes");
+        $clientes_datatable->buildDatatable();
+        $query = $this->get('sg_datatables.query')->getQueryFrom($clientes_datatable);
+
+    	return $query->getResponse();*/
+
+        $view = $this->view($clientes)
+            ->setTemplate('cliente/index.html.twig')
+            ->setTemplateData([
+                            'clientes' => $clientes
+                             ]);
+        return $clientes;
+    }
+    
        /**
      * Get results from Contacto entity.
      *

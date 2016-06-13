@@ -13,7 +13,7 @@ use Arxis\ContableBundle\Entity\Contacto;
  *
  * @author Rene Arias <renearias@arxis.la>
  * @ORM\Table()
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Arxis\ContableBundle\Repository\ClienteRepository")
  * 
  */
 class Cliente extends Contacto{

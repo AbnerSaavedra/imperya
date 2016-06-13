@@ -16,7 +16,12 @@ services:
        class: AppBundle\Form\Handler\FormHandler
        arguments: ["@doctrine.orm.entity_manager","@form.factory","@paypaybundle.form.productostype"]
     paypaybundle.form.productostype:
-        class: Multiservices\PayPayBundle\Form\ProductosType        
+        class: Multiservices\PayPayBundle\Form\ProductosType
+    paypaybundle.form.handler.formaspagos:
+       class: AppBundle\Form\Handler\FormHandler
+       arguments: ["@doctrine.orm.entity_manager","@form.factory","@paypaybundle.form.formaspagostype"]
+    paypaybundle.form.formaspagostype:
+        class: Multiservices\PayPayBundle\Form\FormasPagosType 
         
     paypay.form.type.formasPagos:
         class: Multiservices\PayPayBundle\Form\Type\FormasPagosType

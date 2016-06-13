@@ -8,3 +8,5 @@ pay_pay_facturas:
     resource: "@PayPayBundle/Resources/config/routing/facturas.yml"        
 pay_pay_productos:
     resource: "@PayPayBundle/Resources/config/routing/productos.yml"
+pay_pay_formaspagos:
+    resource: "@PayPayBundle/Resources/config/routing/formaspagos.yml"

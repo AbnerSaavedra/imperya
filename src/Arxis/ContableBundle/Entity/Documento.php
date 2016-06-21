@@ -46,5 +46,86 @@ class Documento
     private $moduloid;
 
 
-}
 
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set codigo
+     *
+     * @param string $codigo
+     *
+     * @return Documento
+     */
+    public function setCodigo($codigo)
+    {
+        $this->codigo = $codigo;
+
+        return $this;
+    }
+
+    /**
+     * Get codigo
+     *
+     * @return string
+     */
+    public function getCodigo()
+    {
+        return $this->codigo;
+    }
+
+    /**
+     * Set nombre
+     *
+     * @param string $nombre
+     *
+     * @return Documento
+     */
+    public function setNombre($nombre)
+    {
+        $this->nombre = $nombre;
+
+        return $this;
+    }
+
+    /**
+     * Get nombre
+     *
+     * @return string
+     */
+    public function getNombre()
+    {
+        return $this->nombre;
+    }
+
+    /**
+     * Set moduloid
+     *
+     * @param \Arxis\ContableBundle\Entity\Modulo $moduloid
+     *
+     * @return Documento
+     */
+    public function setModuloid(\Arxis\ContableBundle\Entity\Modulo $moduloid)
+    {
+        $this->moduloid = $moduloid;
+
+        return $this;
+    }
+
+    /**
+     * Get moduloid
+     *
+     * @return \Arxis\ContableBundle\Entity\Modulo
+     */
+    public function getModuloid()
+    {
+        return $this->moduloid;
+    }
+}

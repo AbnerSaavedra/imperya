@@ -33,3 +33,9 @@ monolog:
 
 #swiftmailer:
 #    delivery_address: me@example.com
+csa_guzzle:
+    logger: true
+    clients:
+        local_test_api:
+            config:
+                base_uri: '%behat_host%/app_dev.php/'

@@ -1,0 +1,21 @@
+parameters:
+#    parameter_name: value
+     timeago.timestamp: timestamp
+services:
+#    notify.example:
+#        class: Multiservices\NotifyBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
+    timeago:
+        class: Multiservices\NotifyBundle\TimerService\timeago
+        arguments: ["%timeago.timestamp%"]
+    notificador:
+        class: Multiservices\NotifyBundle\Servicios\Notificador
+        arguments: ["@doctrine.orm.entity_manager"]
+    activityregistrador:
+        class: Multiservices\NotifyBundle\Servicios\ActivityRegistrador
+        arguments: ["@doctrine.orm.entity_manager"]
+    notify.user.login:
+        class: Multiservices\NotifyBundle\EventListener\LoginListener
+        arguments: ["@security.token_storage","@service_container"]
+        tags:
+            - { name: kernel.event_subscriber }

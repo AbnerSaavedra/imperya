@@ -140,5 +140,398 @@ class Establecimiento
     private $empresaid;
 
 
-}
 
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set codigo
+     *
+     * @param string $codigo
+     *
+     * @return Establecimiento
+     */
+    public function setCodigo($codigo)
+    {
+        $this->codigo = $codigo;
+
+        return $this;
+    }
+
+    /**
+     * Get codigo
+     *
+     * @return string
+     */
+    public function getCodigo()
+    {
+        return $this->codigo;
+    }
+
+    /**
+     * Set nombrecomercial
+     *
+     * @param string $nombrecomercial
+     *
+     * @return Establecimiento
+     */
+    public function setNombrecomercial($nombrecomercial)
+    {
+        $this->nombrecomercial = $nombrecomercial;
+
+        return $this;
+    }
+
+    /**
+     * Get nombrecomercial
+     *
+     * @return string
+     */
+    public function getNombrecomercial()
+    {
+        return $this->nombrecomercial;
+    }
+
+    /**
+     * Set numero
+     *
+     * @param string $numero
+     *
+     * @return Establecimiento
+     */
+    public function setNumero($numero)
+    {
+        $this->numero = $numero;
+
+        return $this;
+    }
+
+    /**
+     * Get numero
+     *
+     * @return string
+     */
+    public function getNumero()
+    {
+        return $this->numero;
+    }
+
+    /**
+     * Set direccion
+     *
+     * @param string $direccion
+     *
+     * @return Establecimiento
+     */
+    public function setDireccion($direccion)
+    {
+        $this->direccion = $direccion;
+
+        return $this;
+    }
+
+    /**
+     * Get direccion
+     *
+     * @return string
+     */
+    public function getDireccion()
+    {
+        return $this->direccion;
+    }
+
+    /**
+     * Set telefonos
+     *
+     * @param string $telefonos
+     *
+     * @return Establecimiento
+     */
+    public function setTelefonos($telefonos)
+    {
+        $this->telefonos = $telefonos;
+
+        return $this;
+    }
+
+    /**
+     * Get telefonos
+     *
+     * @return string
+     */
+    public function getTelefonos()
+    {
+        return $this->telefonos;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     *
+     * @return Establecimiento
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set ciudad
+     *
+     * @param string $ciudad
+     *
+     * @return Establecimiento
+     */
+    public function setCiudad($ciudad)
+    {
+        $this->ciudad = $ciudad;
+
+        return $this;
+    }
+
+    /**
+     * Get ciudad
+     *
+     * @return string
+     */
+    public function getCiudad()
+    {
+        return $this->ciudad;
+    }
+
+    /**
+     * Set actividadeseconomicas
+     *
+     * @param string $actividadeseconomicas
+     *
+     * @return Establecimiento
+     */
+    public function setActividadeseconomicas($actividadeseconomicas)
+    {
+        $this->actividadeseconomicas = $actividadeseconomicas;
+
+        return $this;
+    }
+
+    /**
+     * Get actividadeseconomicas
+     *
+     * @return string
+     */
+    public function getActividadeseconomicas()
+    {
+        return $this->actividadeseconomicas;
+    }
+
+    /**
+     * Set fechainicio
+     *
+     * @param \DateTime $fechainicio
+     *
+     * @return Establecimiento
+     */
+    public function setFechainicio($fechainicio)
+    {
+        $this->fechainicio = $fechainicio;
+
+        return $this;
+    }
+
+    /**
+     * Get fechainicio
+     *
+     * @return \DateTime
+     */
+    public function getFechainicio()
+    {
+        return $this->fechainicio;
+    }
+
+    /**
+     * Set fechacierre
+     *
+     * @param \DateTime $fechacierre
+     *
+     * @return Establecimiento
+     */
+    public function setFechacierre($fechacierre)
+    {
+        $this->fechacierre = $fechacierre;
+
+        return $this;
+    }
+
+    /**
+     * Get fechacierre
+     *
+     * @return \DateTime
+     */
+    public function getFechacierre()
+    {
+        return $this->fechacierre;
+    }
+
+    /**
+     * Set fechareinicio
+     *
+     * @param \DateTime $fechareinicio
+     *
+     * @return Establecimiento
+     */
+    public function setFechareinicio($fechareinicio)
+    {
+        $this->fechareinicio = $fechareinicio;
+
+        return $this;
+    }
+
+    /**
+     * Get fechareinicio
+     *
+     * @return \DateTime
+     */
+    public function getFechareinicio()
+    {
+        return $this->fechareinicio;
+    }
+
+    /**
+     * Set estado
+     *
+     * @param EstadoEstablecimientoType $estado
+     *
+     * @return Establecimiento
+     */
+    public function setEstado($estado)
+    {
+        $this->estado = $estado;
+
+        return $this;
+    }
+
+    /**
+     * Get estado
+     *
+     * @return EstadoEstablecimientoType
+     */
+    public function getEstado()
+    {
+        return $this->estado;
+    }
+
+    /**
+     * Set notas
+     *
+     * @param string $notas
+     *
+     * @return Establecimiento
+     */
+    public function setNotas($notas)
+    {
+        $this->notas = $notas;
+
+        return $this;
+    }
+
+    /**
+     * Get notas
+     *
+     * @return string
+     */
+    public function getNotas()
+    {
+        return $this->notas;
+    }
+
+    /**
+     * Set logo
+     *
+     * @param string $logo
+     *
+     * @return Establecimiento
+     */
+    public function setLogo($logo)
+    {
+        $this->logo = $logo;
+
+        return $this;
+    }
+
+    /**
+     * Get logo
+     *
+     * @return string
+     */
+    public function getLogo()
+    {
+        return $this->logo;
+    }
+
+    /**
+     * Set comprobanteselectronicos
+     *
+     * @param boolean $comprobanteselectronicos
+     *
+     * @return Establecimiento
+     */
+    public function setComprobanteselectronicos($comprobanteselectronicos)
+    {
+        $this->comprobanteselectronicos = $comprobanteselectronicos;
+
+        return $this;
+    }
+
+    /**
+     * Get comprobanteselectronicos
+     *
+     * @return boolean
+     */
+    public function getComprobanteselectronicos()
+    {
+        return $this->comprobanteselectronicos;
+    }
+
+    /**
+     * Set empresaid
+     *
+     * @param \Arxis\ContableBundle\Entity\Establecimiento $empresaid
+     *
+     * @return Establecimiento
+     */
+    public function setEmpresaid(\Arxis\ContableBundle\Entity\Establecimiento $empresaid)
+    {
+        $this->empresaid = $empresaid;
+
+        return $this;
+    }
+
+    /**
+     * Get empresaid
+     *
+     * @return \Arxis\ContableBundle\Entity\Establecimiento
+     */
+    public function getEmpresaid()
+    {
+        return $this->empresaid;
+    }
+}

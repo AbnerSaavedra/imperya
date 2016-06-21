@@ -5,3 +5,26 @@ arxis_contable:
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
+#rutas del back o api         
+usuarios_api:
+    type: rest
+    resource: "@AppBundle/Controller/UsuarioController.php"
+    #prefix: api     
+#notify:
+#    resource: "@NotifyBundle/Resources/config/routing.yml"
+#    prefix:   /
+pay_pay:
+    resource: "@PayPayBundle/Resources/config/routing.yml"
+    prefix:   /    
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"  
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+fos_user_secure:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+fos_user_group:
+    resource: "@FOSUserBundle/Resources/config/routing/group.xml"
+    prefix: /group
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /doc    
